@@ -40,6 +40,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'djmoney',
+    'agent_app',
+    'client_app',
+    'inspector_app',
+    'lender_app',
+    'property_app',
+    'subtask_app',
+    'task_app',
+    'template_app',
+    'title_app',
+    'transaction_app',
 ]
 
 MIDDLEWARE = [
