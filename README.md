@@ -3,3 +3,8 @@ Summary: This application will assist real estate agents (or DIY home buyers and
 
 - front-end: Django
 - back-end: ReactJS
+
+Database Schema: https://drawsql.app/teams/my-team-1003/diagrams/transaction-manager
+
+Front-end sketch: https://www.tldraw.com/v/7-YgfK4BPFELxCl_f9FlW?viewport=-274%2C-1570%2C5134%2C2586&page=page%3AglREP5yhNeTLNZpjSz--d
+
