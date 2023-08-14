@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'template_app',
     'title_app',
     'transaction_app',
+    'tasklist_app',
+    'taskmenu_app',
+    'subtaskmenu_app',
 ]
 
 MIDDLEWARE = [

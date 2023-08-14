@@ -23,3 +23,6 @@ class Property(models.Model):
     hoa = models.BooleanField(
         default=True
     )
+
+    def __str__(self):
+        return f"{self.street}, {self.city}, {self.state} {self.zip}"    

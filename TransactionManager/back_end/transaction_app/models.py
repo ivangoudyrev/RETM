@@ -28,7 +28,10 @@ class Transaction(models.Model):
     ratify_date = models.DateTimeField(
         # default=datetime.today(), #should this be pre-populated?
     )
-    closing_date = models.DateTimeField()
+    closing_date = models.DateTimeField(
+        null=True,
+        blank=True
+    ) #ratify_date +30 per function below
     price = MoneyField(
         decimal_places=2,
         default=0,
@@ -46,10 +49,17 @@ class Transaction(models.Model):
         default=5,
         validators=[v.MinValueValidator(1), v.MaxValueValidator(10)] #cannot be more than 10 days
     )
-    emd_date = models.DateTimeField(
-        null=True, #set for testing
-        blank=True, #set for testing
+    emd_business_days = models.BooleanField(
+        default = True
     )
+    emd_deadline = models.DateTimeField(
+        null=True,
+        blank=True
+    )
+    emd_date = models.DateTimeField(
+        null=True,
+        blank=True
+    ) #ratify_date +emd_days per function below
     # emd_received = models.BooleanField(default=False) #completion should be on Task model
 
     # Loan fields
@@ -58,8 +68,6 @@ class Transaction(models.Model):
         Lender, 
         on_delete=models.CASCADE, 
         related_name='transactions',
-        null=True, #set for testing
-        blank=True, #set for testing
     )
     # appraisal_complete = models.BooleanField(default=False) #completion should be on Task model
     # clear_to_close = models.BooleanField(default=False) #completion should be on Task model
@@ -77,12 +85,19 @@ class Transaction(models.Model):
         default=3,
         validators=[v.MinValueValidator(1), v.MaxValueValidator(10)] #cannot be more than 10 days
     )
+    inspection_business_days = models.BooleanField(
+        default = True
+    )
     inspector_id = models.ForeignKey(
         Inspector, 
         on_delete=models.CASCADE, 
         related_name='home_inspection_transactions',
         null=True, #set for testing
         blank=True, #set for testing
+    )
+    inspection_deadline = models.DateTimeField(
+        null=True,
+        blank=True
     )
     inspection_date = models.DateTimeField(
         null=True, #set for testing
@@ -96,6 +111,8 @@ class Transaction(models.Model):
         Inspector, 
         on_delete=models.CASCADE, 
         related_name='pest_inspection_transactions',
+        null=True,
+        blank=True
     )
     pest_inspection_date = models.DateTimeField(
         null=True,
@@ -113,6 +130,8 @@ class Transaction(models.Model):
         Inspector, 
         on_delete=models.CASCADE, 
         related_name='well_inspection_transactions',
+        null=True,
+        blank=True
     )
     septic_inspection = models.BooleanField(
         null=True,
@@ -126,6 +145,8 @@ class Transaction(models.Model):
         Inspector, 
         on_delete=models.CASCADE, 
         related_name='septic_inspection_transactions',
+        null=True,
+        blank=True
     )
 
     #  HOA Contingency fields
@@ -147,16 +168,23 @@ class Transaction(models.Model):
     )
 
     # Miscellaneous Info
-    notes = models.TextField()
+    notes = models.TextField(
+        null=True,
+        blank=True
+    )
+    closed = models.BooleanField(
+        default=False
+    )
 
     # This function will be used to calculate number of normal or business days from an input date
     @staticmethod
-    def add_business_days(from_date_str, number_of_days, business_days=True):
-        if from_date_str == "":
-            return ""
-        date_format = '%Y-%m-%d'
-        from_date_obj = datetime.strptime(from_date_str, date_format)
-        to_date = from_date_obj
+    def add_days(from_date_str, number_of_days, business_days=True):
+        # if from_date_str == "":
+            # return ""
+        # date_format = '%Y-%m-%d'
+        # from_date_obj = datetime.strptime(from_date_str, date_format)
+        # to_date = from_date_obj
+        to_date = from_date_str
         if business_days:
             while number_of_days:
                 to_date += timedelta(1)
@@ -169,14 +197,33 @@ class Transaction(models.Model):
 
     # This function will set calculated date dependencies
     def save(self, *args, **kwargs):
-        self.closing_date = self.add_business_days(from_date_str=self.ratify_date, number_of_days=30, business_days=False)
-        self.emd_deadline = self.add_business_days(self.ratify_date, self.emd_days)
-        self.inspection_deadline = self.add_business_days(self.ratify_date, self.inspection_days)
+        self.closing_date = self.add_days(
+            from_date_str=self.ratify_date, 
+            number_of_days=30, 
+            business_days=False
+        )
+        self.emd_deadline = self.add_days(
+            from_date_str=self.ratify_date, 
+            # number_of_days=self.emd_days, 
+            number_of_days=5,
+            business_days=self.emd_business_days
+        )
+        self.inspection_deadline = self.add_days(
+            from_date_str=self.ratify_date, 
+            number_of_days=self.inspection_days, 
+            business_days=self.inspection_business_days
+        )
         super().save(*args, **kwargs)
     
     # This function will be called to set a contingency later in the transaction timeframe
     def set_hoa_contingency(self, hoa_documents_received_date):
         hoa_contingency_days = 3
         self.hoa_documents_received_date = hoa_documents_received_date
-        self.hoa_documents_contingency_date = self.add_business_days(self.hoa_documents_received_date, hoa_contingency_days)
+        self.hoa_documents_contingency_date = self.add_days(from_date_str=self.hoa_documents_received_date, number_of_days=hoa_contingency_days, business_days=True)
         self.save()
+
+    def __str__(self):
+        if self.closed:
+            return f"{self.property_id} - {self.type} - {self.closing_date}"
+        else:
+            return f"PENDING: {self.property_id} - {self.type}"
