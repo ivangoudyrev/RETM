@@ -18,7 +18,7 @@ class Subtaskmenu(models.Model):
         on_delete=models.CASCADE,
         related_name='subtasks'
     )
-    connected_task_id = models.OneToOneField( #invoked for connected tasks
+    connected_task_id = models.ForeignKey( #invoked for connected tasks
         Taskmenu,
         on_delete=models.CASCADE,
         related_name='subtask',

@@ -9,3 +9,9 @@ task_app/.fixtures
 template_app/.fixtures
 title_app/.fixtures
 transaction_app/.fixtures
+taskmenu_app/.fixtures
+subtaskmenu_app/.fixtures
+
+__pycache__/
+*.py[cod]
+*$py.class
