@@ -7,5 +7,5 @@ Summary: This application will assist real estate agents (or DIY home buyers and
 
 ## Database Schema
 
-![App Screenshot](https://github.com/ivangoudyrev/my_personal_project/blob/main/RTMdbSchema.png)
+![App Screenshot](https://github.com/ivangoudyrev/my_personal_project/blob/main/RTMdbSchemaV2.png)
 
