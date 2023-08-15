@@ -18,6 +18,9 @@ class Subtask(models.Model):
         null=True,
         blank=True
     )
+    complete = models.BooleanField(
+        default=False
+    )
 
     def __str__(self):
         return f"{self.title} - {self.task_id} - {self.connected_task_id}"

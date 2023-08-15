@@ -1,5 +1,6 @@
 from django.db import models
 from validator.validator import validate_name, validate_phone
+from contactslist_app.models import Contactslist
 
 class Client(models.Model):
     first_name = models.CharField(
@@ -27,9 +28,14 @@ class Client(models.Model):
         validators=[validate_phone]
     ) 
     email = models.EmailField(
-        unique=True, 
+        # unique=True, 
         blank=False, 
         null=False
+    )
+    contactslist_id = models.ForeignKey(
+        Contactslist,
+        on_delete=models.CASCADE,
+        related_name="clients"
     )
 
     def __str__(self):

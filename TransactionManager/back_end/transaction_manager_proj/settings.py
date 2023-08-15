@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'tasklist_app',
     'taskmenu_app',
     'subtaskmenu_app',
-    'user_app'
+    'user_app',
+    'contactslist_app',
 ]
 
 MIDDLEWARE = [

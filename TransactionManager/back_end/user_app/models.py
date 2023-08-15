@@ -10,12 +10,6 @@ class User(AbstractUser):
         null=False,
         validators=[validate_name]
     )
-    mid_init = models.CharField(
-        max_length=255, 
-        blank=True,
-        null=True,
-        validators=[validate_name]
-    )
     last_name = models.CharField(
         max_length=255, 
         blank=False,

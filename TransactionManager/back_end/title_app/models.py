@@ -1,5 +1,6 @@
 from django.db import models
 from validator.validator import validate_name, validate_phone
+from contactslist_app.models import Contactslist
 
 class Title(models.Model):
     first_name = models.CharField(
@@ -28,7 +29,7 @@ class Title(models.Model):
         validators=[validate_phone]
     ) 
     email = models.EmailField(
-        unique=True, 
+        # unique=True, 
         blank=False, 
         null=False
     )
@@ -36,6 +37,11 @@ class Title(models.Model):
         max_length=255,
         blank=True,
         null=True
+    )
+    contactslist_id = models.ForeignKey(
+        Contactslist,
+        on_delete=models.CASCADE,
+        related_name="titles"
     )
 
     def __str__(self):
