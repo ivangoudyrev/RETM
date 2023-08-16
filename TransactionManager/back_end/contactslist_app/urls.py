@@ -20,4 +20,5 @@ urlpatterns = [
     path('lenders/<int:id>/', include("lender_app.urls")),
     path('agents/<int:id>/', include("agent_app.urls")),
     path('titlecos/<int:id>/', include("title_app.urls")),    
+    # path('tasklist/', include("tasklist_app.urls")),
 ]

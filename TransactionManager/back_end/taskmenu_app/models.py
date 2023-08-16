@@ -1,4 +1,5 @@
 from django.db import models
+from user_app.models import User
 
 # Create your models here.
 class Taskmenu(models.Model):
@@ -11,6 +12,14 @@ class Taskmenu(models.Model):
     details = models.TextField(
         null=True,
         blank=True
+    )
+    essential = models.BooleanField(
+        default = True
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='menutasks'
     )
 
     def __str__(self):

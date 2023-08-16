@@ -3,15 +3,15 @@ from taskmenu_app.models import Taskmenu
 
 # Create your models here.
 class Subtaskmenu(models.Model):
-    type = models.CharField(
-        max_length=4
-    )
     title = models.CharField(
         max_length=100
     )
     details = models.TextField(
         null=True,
         blank=True
+    )
+    essential = models.BooleanField(
+        default=True
     )
     task_id = models.ForeignKey(
         Taskmenu,

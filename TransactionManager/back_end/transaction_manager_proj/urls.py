@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from task_app.views import All_tasks
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,6 @@ urlpatterns = [
     path('api/v1/contacts/', include("contactslist_app.urls")),
     path('api/v1/properties/', include("property_app.urls")),
     path('api/v1/transactions/', include("transaction_app.urls")),
+    path('api/v1/tasks/', All_tasks.as_view()), #this is a get-only view to see all tasks for all transactions/tasklists
+    path('api/v1/taskmenu/', include("taskmenu_app.urls")),
 ]
