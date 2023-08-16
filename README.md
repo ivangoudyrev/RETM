@@ -4,10 +4,9 @@ Summary: This application will assist real estate agents (or DIY home buyers and
 - front-end: ReactJS
 - back-end: Django
 
-
-## Database Schema
-
-![App Screenshot](https://github.com/ivangoudyrev/my_personal_project/blob/main/RTMdbSchemaV2.png)
-
 ## Front-end Design
 https://www.tldraw.com/v/7-YgfK4BPFELxCl_f9FlW?viewport=4580%2C85%2C819%2C722&page=page%3AglREP5yhNeTLNZpjSz--d
+
+## Database Schema
+![App Screenshot](https://github.com/ivangoudyrev/my_personal_project/blob/main/RTMdbSchemaV2.png)
+
