@@ -14,6 +14,10 @@ from rest_framework.status import (
 )
 from django.contrib.auth import authenticate
 
+class User_permissions(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
 # Create your views here.
 class Register(APIView):
     def post(self, request):

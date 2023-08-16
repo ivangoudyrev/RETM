@@ -1,5 +1,6 @@
 from django.db import models
 from validator.validator import zip_validator
+from user_app.models import User
 
 class Property(models.Model):
     street = models.CharField(
@@ -22,6 +23,11 @@ class Property(models.Model):
     )
     hoa = models.BooleanField(
         default=True
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='properties'
     )
 
     def __str__(self):

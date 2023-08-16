@@ -5,4 +5,4 @@ class AClientSerializer(ModelSerializer):
     
     class Meta:
         model = Client
-        fields = ['id', 'first_name', 'mid_init', 'last_name', 'phone', 'email']
+        fields = '__all__'

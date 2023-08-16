@@ -1,8 +1,8 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Lender
+from .models import Property
 
-class ALenderSerializer(ModelSerializer):
+class APropertySerializer(ModelSerializer):
     
     class Meta:
-        model = Lender
+        model = Property
         fields = '__all__'

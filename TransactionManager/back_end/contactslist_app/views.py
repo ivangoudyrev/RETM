@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework.views import APIView
+from user_app.views import User_permissions
 from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_201_CREATED,
@@ -21,12 +21,6 @@ from lender_app.serializers import ALenderSerializer
 from title_app.serializers import ATitleSerializer
 from agent_app.serializers import AAgentSerializer
 from inspector_app.serializers import AInspectorSerializer
-
-
-class User_permissions(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-
 
 class A_contacts_list(User_permissions):
     # Creates a new Contact List for a User
@@ -98,7 +92,7 @@ class All_agents(User_permissions):
 class All_inspectors(User_permissions):
     # Gets a list of all inspectors for the logged-in user
     def get(self, request):
-        inspectors = AInspectorSerializer(request.user.inspectors.clients, many=True)
+        inspectors = AInspectorSerializer(request.user.contacts.inspectors, many=True)
         return Response(inspectors.data)
     
     # Creates an inspector instance for the logged-in user

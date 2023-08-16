@@ -8,6 +8,7 @@ from inspector_app.models import Inspector
 from lender_app.models import Lender
 from title_app.models import Title
 from property_app.models import Property
+from user_app.models import User
 from django.core import validators as v
 
 class Transaction(models.Model):
@@ -174,6 +175,14 @@ class Transaction(models.Model):
     )
     closed = models.BooleanField(
         default=False
+    )
+    archived = models.BooleanField(
+        default=False
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='transactions'
     )
 
     # This function will be used to calculate number of normal or business days from an input date

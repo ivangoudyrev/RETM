@@ -5,4 +5,4 @@ class ATitleSerializer(ModelSerializer):
     
     class Meta:
         model = Title
-        fields = ['id', 'first_name', 'mid_init', 'last_name', 'phone', 'email', 'company']
+        fields = '__all__'

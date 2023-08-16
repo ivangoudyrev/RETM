@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework.views import APIView
+from user_app.views import User_permissions
 from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_204_NO_CONTENT,
@@ -10,10 +10,6 @@ from rest_framework.authentication import TokenAuthentication
 
 from .models import Agent
 from .serializers import AAgentSerializer
-
-class User_permissions(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
 class A_agent(User_permissions):
     # Get an agent by-id
