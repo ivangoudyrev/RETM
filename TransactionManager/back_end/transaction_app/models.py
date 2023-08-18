@@ -2,12 +2,19 @@ from django.db import models
 from djmoney.models.fields import MoneyField
 from datetime import datetime, timedelta
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 from agent_app.models import Agent
 from client_app.models import Client
 from inspector_app.models import Inspector
 from lender_app.models import Lender
 from title_app.models import Title
 from property_app.models import Property
+from user_app.models import User
+from taskmenu_app.models import Taskmenu
+from subtaskmenu_app.models import Subtaskmenu
+
 from django.core import validators as v
 
 class Transaction(models.Model):
@@ -175,6 +182,14 @@ class Transaction(models.Model):
     closed = models.BooleanField(
         default=False
     )
+    archived = models.BooleanField(
+        default=False
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='transactions'
+    )
 
     # This function will be used to calculate number of normal or business days from an input date
     @staticmethod
@@ -227,3 +242,38 @@ class Transaction(models.Model):
             return f"{self.property_id} - {self.type} - {self.closing_date}"
         else:
             return f"PENDING: {self.property_id} - {self.type}"
+
+# This function copies a set of default tasks/subtasts from the TaskMenu and SubtaskMenu on Transaction instance creation
+@receiver(post_save, sender=Transaction)
+def copy_default_tasks(sender, instance, created, **kwargs):
+    if created:
+        default_tasks = Taskmenu.objects.all()
+
+        # First pass: Create all Task objects and populate the task_mapping
+        task_mapping = {}
+        for task_item in default_tasks:
+            new_task = instance.tasks.create(
+                title=task_item.title,
+                details=task_item.details,
+                tasklist_id=instance,
+                essential=True,
+                notes="",
+            )
+            task_mapping[task_item.id] = new_task
+
+        # Second pass: Create Subtask objects using the task_mapping for connected_task_id
+        for task_item in default_tasks:
+            new_task = task_mapping[task_item.id]
+            default_subtasks = Subtaskmenu.objects.filter(task_id=task_item)
+            for subtask_item in default_subtasks:
+                connected_task = None
+                if subtask_item.connected_task_id:
+                    connected_task = task_mapping.get(subtask_item.connected_task_id.id)
+
+                new_task.subtasks.create(
+                    type=subtask_item.type,
+                    title=subtask_item.title,
+                    details=subtask_item.details,
+                    task_id=new_task,
+                    connected_task_id=connected_task,
+                )
