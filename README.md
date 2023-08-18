@@ -9,4 +9,3 @@ https://www.tldraw.com/v/7-YgfK4BPFELxCl_f9FlW?viewport=4580%2C85%2C819%2C722&pa
 
 ## Database Schema
 ![App Screenshot](https://github.com/ivangoudyrev/my_personal_project/blob/main/RTMdbSchemaV4.png)
-
