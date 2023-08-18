@@ -37,6 +37,8 @@ class Client(models.Model):
         on_delete=models.CASCADE,
         related_name="clients"
     )
+    notes = models.TextField(
+    )
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

@@ -10,10 +10,10 @@ class Property(models.Model):
         max_length=200,
     )
     state = models.CharField(
-        default="VA",
+        max_length=2,
     )
     zip = models.CharField(
-        validators=[zip_validator]
+        validators=[zip_validator],
     )
     well = models.BooleanField(
         default=False
@@ -22,7 +22,7 @@ class Property(models.Model):
         default=False
     )
     hoa = models.BooleanField(
-        default=True
+        default=False
     )
     user_id = models.ForeignKey(
         User,
