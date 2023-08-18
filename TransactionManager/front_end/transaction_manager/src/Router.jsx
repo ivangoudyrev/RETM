@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage"
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-// import { Lists } from "./pages/ListsPage";
+import ContactsPage from "./pages/ContactsPage.jsx";
+import PropertiesPage from "./pages/PropertiesPage.jsx";
+import TransactionsPage from "./pages/TransactionsPage.jsx";
+import TasksPage from "./pages/TasksPage.jsx";
 import App from "./App";
 
 export const router = createBrowserRouter([
@@ -12,17 +14,34 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <HomePage/>
+      },
+      {
         path: "login",
         element: <LoginPage/>
       },
       {
-        path: "register",
-        element: <RegisterPage/>
-      },
-      {
         path: "home",
         element: <HomePage/>
-      }
+      },
+      {
+        path: "contacts",
+        element: <ContactsPage/>
+      },
+      {
+        path: "properties",
+        element: <PropertiesPage/>
+      },
+      {
+        path: "transactions",
+        element: <TransactionsPage/>
+      },
+      {
+        path: "tasks",
+        element: <TasksPage/>
+      },
+      
+
     ]
 
   }

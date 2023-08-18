@@ -67,3 +67,248 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+/* body {
+  margin: 0;
+  align-items: center;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+} */
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* line-height: 1.5; */
+  /* font-weight: 400; */
+
+  /* color-scheme: light dark; */
+  /* color: rgba(255, 255, 255, 0.87); */
+  /* background-color: #242424; */
+}
+
+#main_div {
+  border: solid black 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+header {
+  border: solid black 1px;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+}
+
+#RETMLogo {
+  width: 120px;
+}
+
+.navButton {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+.login_register_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  width: 45vmin;
+  display: flex;
+  flex-direction: column;
+}
+
+.signin_signup {
+  padding: 10px;
+  width: 50vmin;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entryfield {
+  margin: 1vmin;
+}
+
+.login_register_button {
+  background-color: blue;
+  margin: 1vmin;
+  color: white
+}
+
+.create_acct_button {
+  margin-top: 20px;
+  background-color: green;
+  color: white;
+  font-weight:bold;
+}
+
+#page_container{
+  border: solid black 1px;
+  /* width: 1000px; */
+  width: 80vw;
+  max-width: 1000px;
+  /* display: flexbox; */
+
+}
+
+#page_title_container {
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  /* width: 90%; */
+}
+
+#below_title_container{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px;   */
+  display: flex;
+
+}
+
+#left_side_container{
+  border: solid black 1px;
+  /* padding: 5px; */
+  margin: 5px;  
+  width:75%;
+}
+#right_side_container{
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px;
+  width: 25%;  
+}
+
+#add_button_container{
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px;  
+  display: flex;
+  justify-content: flex-end;
+}
+
+.property_container{
+  border: solid black 1px;
+  background-color: lightgray;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#new_property_form_container{
+  background-color: white;
+}
+
+.property_info_container{
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px;
+  width: 80%;  
+}
+
+.street{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  width: 80%;
+}
+.street_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.city_state_zip_box{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  display: flex;
+}
+
+
+.city{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width:50%
+}
+
+.city_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.state{
+  border: solid black 1px;
+  padding-left: 5px;
+  /* margin: 5px; */
+  width: 15%;
+}
+
+.state_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.zip{
+  border: solid black 1px;
+  padding-left: 5px;
+  /* margin: 5px; */
+  width: 30%;
+}
+
+.zip_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+#button_container{
+  border: solid black 1px;
+}
+#viewing_button_container{
+  border: solid black 1px;
+}
+#editing_button_container{
+  border: solid black 1px;
+}
