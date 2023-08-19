@@ -115,23 +115,23 @@ export default function Property(props){
         </div>
       </div>
       <div id="button_container">
-        <div id="viewing_button_container">
+        <div className="viewing_button_container">
           {!editMode ? (
             <div id="edit_button_container">
-              <button onClick={toggleEditMode}>Edit</button>
+              <button onClick={toggleEditMode}>Edit Property</button>
             </div>
           ) : (
             <div id="editing_button_container">
               <div id="edit_button_container">
-                <button onClick={toggleEditMode}>Cancel</button>
+                <button onClick={toggleEditMode}>Discard Changes</button>
               </div>
               <div id="remove_button_container">
-                <button onClick={saveChanges}>Save</button>
+                <button onClick={saveChanges}>Save changes</button>
               </div>
             </div>
           )}
           <div id="remove_button_container">
-            <button onClick={() => removeProperty(property.id)}>Remove</button>
+            <button onClick={() => removeProperty(property.id)}>Remove Property </button>
           </div>
         </div>
       </div>

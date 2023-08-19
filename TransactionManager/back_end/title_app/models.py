@@ -43,6 +43,11 @@ class Title(models.Model):
         on_delete=models.CASCADE,
         related_name="titles"
     )
+    notes = models.TextField(
+        blank=True,
+        null=True,
+    )
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.company}"

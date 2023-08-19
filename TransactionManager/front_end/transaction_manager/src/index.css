@@ -305,10 +305,94 @@ form {
 
 #button_container{
   border: solid black 1px;
+  /* display: flex; */
+  /* flex-direction: row; */
+
 }
-#viewing_button_container{
+.viewing_button_container{
   border: solid black 1px;
+  /* display: flex; */
+  /* flex-direction: row; */
 }
 #editing_button_container{
   border: solid black 1px;
+}
+
+.contacts_link_box{
+  border: solid black 1px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.name{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  width: 98%;
+  display: flex;
+}
+.first_name_input{
+  width: 35%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+.middle_name_input{
+  width:10%;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+.last_name_input{
+  width:55%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+.company_input{
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.contact_box{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  display: flex;
+}
+
+.phone{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width:30%;
+  margin-right: 5px;
+}
+.email{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width:70%
+}
+
+.notes_box{
+  max-width: 100%;
+  margin: 5px;
+  padding: 5px;
 }

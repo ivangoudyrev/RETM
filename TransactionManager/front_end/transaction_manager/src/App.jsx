@@ -13,6 +13,7 @@ export default function App() {
 
   useEffect(()=>{
     whoAmI()
+    initiateContactList()
   },[])
   
   useEffect(() => {
@@ -30,6 +31,11 @@ export default function App() {
       setUser(null)
       navigate("login")
     }
+  }
+
+  const initiateContactList = async() => {
+    response = await api.post('contacts/')
+    console.log("Contact List:", response.data)
   }
   
   

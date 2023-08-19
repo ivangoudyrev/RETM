@@ -38,6 +38,8 @@ class Client(models.Model):
         related_name="clients"
     )
     notes = models.TextField(
+        blank=True,
+        null=True,
     )
 
     def __str__(self):

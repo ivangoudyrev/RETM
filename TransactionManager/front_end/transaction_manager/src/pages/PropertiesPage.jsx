@@ -174,7 +174,6 @@ export default function PropertiesPage(){
             <button onClick={addProperty}>Save</button>
           </div>
         </div>
-        {/* This following needs to contain a mapping of response addresses */}
         <>
         <div>
         {
