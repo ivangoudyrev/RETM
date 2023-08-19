@@ -24,6 +24,7 @@ class Register(APIView):
         request.data["username"] = request.data["email"]
         user = User.objects.create_user(**request.data)
         token = Token.objects.create(user=user)
+        print("Sending response for ", user.email)
         return Response({
             "user": {"email": user.email}, 
             "token": token.key
@@ -35,6 +36,7 @@ class Log_in(APIView):
         user = authenticate(**request.data)
         if user:
             token, created = Token.objects.get_or_create(user=user)
+            print("Sending response for ", user.email)
             return Response({
                 "user": {"email": user.email}, 
                 "token": token.key})
