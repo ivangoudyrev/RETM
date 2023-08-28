@@ -30,3 +30,8 @@ class Task(models.Model):
 
     def __str__(self):
         return f"{self.title} {self.tasklist_id}"
+
+    def save(self, *args, **kwargs):
+        if self.due_date is None:
+            self.due_date = self.transaction_id.ratify_date
+        super(Task,self).save(*args, **kwargs)

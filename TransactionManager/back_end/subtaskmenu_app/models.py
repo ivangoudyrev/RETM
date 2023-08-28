@@ -1,5 +1,6 @@
 from django.db import models
 from taskmenu_app.models import Taskmenu
+from user_app.models import User
 
 # Create your models here.
 class Subtaskmenu(models.Model):
@@ -16,7 +17,14 @@ class Subtaskmenu(models.Model):
     task_id = models.ForeignKey(
         Taskmenu,
         on_delete=models.CASCADE,
-        related_name='subtasks'
+        related_name='subtasks',
+        null=True,
+        blank=True
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='menusubtasks'
     )
     connected_task_id = models.ForeignKey( #invoked for connected tasks
         Taskmenu,

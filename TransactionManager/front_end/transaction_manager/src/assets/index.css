@@ -1,0 +1,432 @@
+#main_div {
+  border: solid black 1px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+   }
+
+header {
+  border: solid black 1px;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+}
+
+#RETMLogo {
+  width: 120px;
+}
+
+.navButton {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.login_register_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  width: 45vmin;
+  display: flex;
+  flex-direction: column;
+}
+
+.signin_signup {
+  padding: 10px;
+  width: 50vmin;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entryfield {
+  margin: 1vmin;
+}
+
+.login_register_button {
+  background-color: blue;
+  margin: 1vmin;
+  color: white
+}
+
+.create_acct_button {
+  margin-top: 20px;
+  background-color: green;
+  color: white;
+  font-weight:bold;
+}
+
+/* Regular Page Styling */
+
+/* #page_container is on the App.jsx only */
+#page_container{
+  border: solid black 1px;
+  /* width: 1000px; */
+  /* width: 80vw; */
+  max-width: 1000px;
+  /* display: flexbox; */
+
+}
+
+/* on every page */
+.page_title_container {
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  /* width: 90%; */
+}
+
+.below_title_container{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px;   */
+  display: flex;
+
+}
+
+.left_side_container{
+  border: solid black 1px;
+  /* padding: 5px; */
+  margin: 5px;  
+  width:75%;
+}
+
+.add_button_container{
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px;  
+  display: flex;
+  justify-content: flex-end;
+}
+
+.left_side_component{
+  border: 1px solid black;
+  margin: 5px;
+  background-color: beige;
+}
+
+
+.right_side_container{
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px;
+  width: 25%;  
+}
+
+
+.property_container{
+  border: solid black 1px;
+  background-color: lightgray;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#new_property_form_container{
+  background-color: white;
+}
+
+.property_info_container{
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px;
+  width: 80%;  
+}
+
+.street{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  width: 80%;
+}
+.street_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.city_state_zip_box{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  display: flex;
+}
+
+
+.city{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width:50%
+}
+
+.city_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.state{
+  border: solid black 1px;
+  padding-left: 5px;
+  /* margin: 5px; */
+  width: 15%;
+}
+
+.state_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.zip{
+  border: solid black 1px;
+  padding-left: 5px;
+  /* margin: 5px; */
+  width: 30%;
+}
+
+.zip_dynamic_input{
+  width:100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+#button_container{
+  border: solid black 1px;
+  /* display: flex; */
+  /* flex-direction: row; */
+
+}
+.viewing_button_container{
+  border: solid black 1px;
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+#editing_button_container{
+  border: solid black 1px;
+}
+
+.contacts_link_box{
+  border: solid black 1px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.name{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  width: 98%;
+  display: flex;
+}
+.first_name_input{
+  width: 35%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+.middle_name_input{
+  width:10%;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+.last_name_input{
+  width:55%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+.company_input{
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: width 0.2s;
+}
+
+.contact_box{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  display: flex;
+}
+
+.phone{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width:30%;
+  margin-right: 5px;
+}
+.email{
+  border: solid black 1px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width:70%
+}
+
+.notes_box{
+  max-width: 100%;
+  margin: 5px;
+  padding: 5px;
+}
+
+
+/* Dashboard Active Transactions */
+
+#active_transaction_list{
+  border: solid black 1px; 
+  background-color: white;
+}
+#active_transactions_headers{
+  display: flex;
+  margin:5px;
+}
+.active_transaction_item{
+  border: solid black 1px;
+  display: flex;
+}
+
+.p_street{
+  width: 20%;
+  margin: 5px;
+}
+.p_name{
+  width: 20%;
+  margin: 5px;
+}
+.p_type{
+  width: 5%;
+  margin: 5px;
+}
+.p_close_dt{
+  width: 20%;
+  margin: 5px;
+}
+.row{
+  display: flex;
+}
+
+
+/* Dashboard Transaction Boxes */
+
+.dashboard_type_box {
+  border: solid black 1px;
+  border-radius: 10%;
+  margin: 5px;
+  padding: 5px;
+  background-color: white;
+}
+.dashboard_name_box {
+  border: solid black 1px;
+  border-radius: 5%;
+  margin: 5px;
+  padding: 5px;
+  background-color: white;
+}
+.dashboard_closing_dt_box {
+  border: solid black 1px;
+  border-radius: 5%;
+  margin: 5px;
+  padding: 5px;
+  background-color: white;
+}
+.dashboard_address_box {
+  border: solid black 1px;
+  border-radius: 5%;
+  margin: 5px;
+  padding: 5px;
+  background-color: white;
+}
+.dashboard_tasks_box {
+  border: solid black 1px;
+  border-radius: 5%;
+  margin: 5px;
+  padding: 5px;
+  background-color: white;
+}
+
+
+.task_title{
+  border: solid black 1px;
+  padding: 5px;
+  /* margin: 5px; */
+  width: 95%;
+}
+
+.task_details{
+  max-width: 100%;
+  margin: 5px;
+  padding: 5px;
+}
+
+/* Transaction Details Styling */
+
+.hoa_well_septic_chkbx{
+  display: flex;
+}
+
+/* Task box elements */
+
+.task_completion{
+  display:flex;
+  justify-content: space-between;
+}
+
+textarea{
+  width:95%;
+}
+
+.address_lookup{
+  margin: 5px;
+  border: solid black 1px;
+  padding: 5px;
+}
+.lookup_field{
+  width:50%;
+}

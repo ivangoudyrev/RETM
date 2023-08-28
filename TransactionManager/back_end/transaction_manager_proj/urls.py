@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/v1/transactions/', include("transaction_app.urls")),
     path('api/v1/tasks/', All_tasks.as_view()), #this is a get-only view to see all tasks for all transactions/tasklists
     path('api/v1/taskmenu/', include("taskmenu_app.urls")),
+    path('api/v1/subtaskmenu/', include("subtaskmenu_app.urls")),
 ]

@@ -126,6 +126,7 @@ class Transaction(models.Model):
         blank=True,
     )
     well_inspection = models.BooleanField(
+        default=False,
         null=True,
         blank=True
     )
@@ -141,6 +142,7 @@ class Transaction(models.Model):
         blank=True
     )
     septic_inspection = models.BooleanField(
+        default=False,
         null=True,
         blank=True
     )
@@ -193,38 +195,43 @@ class Transaction(models.Model):
 
     # This function will be used to calculate number of normal or business days from an input date
     @staticmethod
-    def add_days(from_date_str, number_of_days, business_days=True):
+    def add_days(from_date, number_of_days, business_days=True):
+        number_of_days_int = int(number_of_days)
+        if isinstance(from_date, str):
+            datetime_format = '%Y-%m-%dT%H:%M'
+            from_date = datetime.strptime(from_date, datetime_format)
+        
         # if from_date_str == "":
             # return ""
         # date_format = '%Y-%m-%d'
         # from_date_obj = datetime.strptime(from_date_str, date_format)
         # to_date = from_date_obj
-        to_date = from_date_str
+        to_date = from_date
         if business_days:
-            while number_of_days:
+            while number_of_days_int:
                 to_date += timedelta(1)
                 if to_date.weekday() < 5: # i.e. is not saturday or sunday
-                    number_of_days -= 1
+                    number_of_days_int -= 1
             return to_date
         else:
-            to_date += timedelta(number_of_days)
+            to_date += timedelta(number_of_days_int)
             return to_date
 
     # This function will set calculated date dependencies
     def save(self, *args, **kwargs):
-        self.closing_date = self.add_days(
-            from_date_str=self.ratify_date, 
-            number_of_days=30, 
-            business_days=False
-        )
+        # self.closing_date = self.add_days(
+        #     from_date=self.ratify_date, 
+        #     number_of_days=30, 
+        #     business_days=False
+        # )
         self.emd_deadline = self.add_days(
-            from_date_str=self.ratify_date, 
+            from_date=self.ratify_date, 
             # number_of_days=self.emd_days, 
-            number_of_days=5,
+            number_of_days=self.emd_days,
             business_days=self.emd_business_days
         )
         self.inspection_deadline = self.add_days(
-            from_date_str=self.ratify_date, 
+            from_date=self.ratify_date, 
             number_of_days=self.inspection_days, 
             business_days=self.inspection_business_days
         )
@@ -247,16 +254,19 @@ class Transaction(models.Model):
 @receiver(post_save, sender=Transaction)
 def copy_default_tasks(sender, instance, created, **kwargs):
     if created:
+        print("Transaction Created!")
         default_tasks = Taskmenu.objects.all()
 
         # First pass: Create all Task objects and populate the task_mapping
         task_mapping = {}
         for task_item in default_tasks:
             new_task = instance.tasks.create(
+                type=task_item.type, 
                 title=task_item.title,
                 details=task_item.details,
-                tasklist_id=instance,
                 essential=True,
+                transaction_id=instance,
+                user_id=instance.user_id,
                 notes="",
             )
             task_mapping[task_item.id] = new_task
@@ -271,7 +281,7 @@ def copy_default_tasks(sender, instance, created, **kwargs):
                     connected_task = task_mapping.get(subtask_item.connected_task_id.id)
 
                 new_task.subtasks.create(
-                    type=subtask_item.type,
+                    # type=subtask_item.type,
                     title=subtask_item.title,
                     details=subtask_item.details,
                     task_id=new_task,

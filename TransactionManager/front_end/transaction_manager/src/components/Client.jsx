@@ -17,13 +17,23 @@ export default function Client(props){
   const [editNotes, setEditNotes] = useState(client.notes)
 
   // This function enables the edit mode for existing entries
-  const toggleEditMode = () => {
+  const toggleEditMode = (e) => {
+    e.preventDefault();
     setEditMode(!editMode);
+    setEditFirstName(client?.first_name);
+    setEditMiddleName(client?.mid_init);
+    setEditLastName(client?.last_name);
+    setEditCompany(client?.company);
+    setEditPhone(client?.phone);
+    setEditEmail(client?.email);
+    setEditNotes(client?.notes);
+
   }
 
   // This function is triggered by a save button to initiate the PUT request
   // in the ProperiesPage
-  const saveChanges = () => {
+  const saveChanges = (e) => {
+    e.preventDefault();
     setEditMode(false);
     const updatedClient = {
       ...client,
@@ -38,89 +48,107 @@ export default function Client(props){
   }
 
   return(
-    <div className="property_container">
-      <div className="property_info_container">
-        <div className="name">
+    <>
+    <div className="card border-2 mb-2">
+      <div className="toast-header bg-secondary text-white d-flex justify-content-between align-items-center p-2">
+      </div>
+      <form className="row g-3 p-2">
+        <div className="col-md-3">
+          <label htmlFor="first-name" className="form-label">First Name</label>
           <input 
-            className="first_name_input"
-            placeholder="First Name"
+            type="text" 
+            className="form-control" 
+            id="first-name"
             value={editFirstName}
             disabled={!editMode}
             onChange={(e) => setEditFirstName(e.target.value)}
           />
+        </div>
+        <div className="col-md-1">
+          <label htmlFor="midinit" className="form-label">M.I.</label>
           <input 
-            className="middle_name_input"
-            placeholder="M.I."
+            type="text" 
+            className="form-control" 
+            id="midinit"
             value={editMiddleName}
             disabled={!editMode}
             onChange={(e) => setEditMiddleName(e.target.value)}
           />
+        </div>
+        <div className="col-md-6">
+          <label htmlFor="last-name" className="form-label">Last Name</label>
           <input 
-            className="last_name_input"
-            placeholder="Last Name"
+            type="text" 
+            className="form-control" 
+            id="last-name"
             value={editLastName}
             disabled={!editMode}
             onChange={(e) => setEditLastName(e.target.value)}
           />
         </div>
-        <div className="contact_box">
-          <div className="phone">
-            <input 
-              className="city_dynamic_input"
-              placeholder="Phone"
-              value={editPhone}
-              disabled={!editMode}
-              onChange={(e) => setEditPhone(e.target.value)}
-            />
-          </div>
-          <div className="email">
-            <input 
-              className="state_dynamic_input"
-              placeholder="Email"
-              value={editEmail}
-              disabled={!editMode}
-              onChange={(e) => setEditEmail(e.target.value)}
-            />
-          </div>
+        <div className="col-md-4">
+          <label htmlFor="phone" className="form-label">Phone</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            id="phone"
+            value={editPhone}
+            disabled={!editMode}
+            onChange={(e) => setEditPhone(e.target.value)}
+          />
         </div>
-        <div>
-          <div>
-            <textarea 
-              className="notes_box"
-              name="" 
-              id="" 
-              cols="30" 
-              rows="4"
-              placeholder="Notes"
-              value={editNotes}
-              disabled={!editMode}
-              onChange={(e) => setEditNotes(e.target.value)}
-            >  
-            </textarea>
-          </div>   
+        <div className="col-md-6">
+          <label htmlFor="email" className="form-label">E-mail</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            id="email"
+            value={editEmail}
+            disabled={!editMode}
+            onChange={(e) => setEditEmail(e.target.value)}
+          />
         </div>
-      </div>
-      <div id="button_container">
-        <div className="viewing_button_container">
+        <div className="col-10">
+          <label htmlFor="input-notes" className="form-label">Notes</label>
+          <textarea 
+            id="input-notes"
+            className="form-control" 
+            aria-label="With textarea"
+            value={editNotes}
+            disabled={!editMode}
+            onChange={(e) => setEditNotes(e.target.value)}
+          >
+          </textarea>
+        </div>
+        <div className="col-12">
           {!editMode ? (
-            <div id="edit_button_container">
-              <button onClick={toggleEditMode}>Edit Client</button>
-            </div>
+            <button 
+            type="submit" 
+            className="btn btn-primary"
+            onClick={toggleEditMode}
+            >Edit</button>
           ) : (
-            <div id="editing_button_container">
-              <div id="edit_button_container">
-                <button onClick={toggleEditMode}>Discard Changes</button>
-              </div>
-              <div id="remove_button_container">
-                <button onClick={saveChanges}>Save Changes</button>
-              </div>
-            </div>
+            <>
+            <button 
+              // type="submit" 
+              className="btn btn-outline-secondary"
+              onClick={toggleEditMode}
+            >Discard</button>
+            <button 
+              // type="submit" 
+              className="btn btn-warning mx-2"
+              onClick={saveChanges}
+            >Save</button>
+            <button 
+              // type="submit" 
+              className="btn btn-danger mx-2"
+              onClick={(e) => removeClient(e, client?.id)}
+            >Delete</button>
+            </>
           )}
-          <div id="remove_button_container">
-            <button onClick={() => removeClient(client.id)}>Remove Client</button>
-          </div>
         </div>
-      </div>
-    </div>
+      </form>
+    </div>  
+    </>
   )
 }

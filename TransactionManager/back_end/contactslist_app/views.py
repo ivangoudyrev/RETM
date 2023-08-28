@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from user_app.views import User_permissions
 from rest_framework.response import Response
 from rest_framework.status import (
+    HTTP_200_OK,
     HTTP_201_CREATED,
     HTTP_204_NO_CONTENT,
     HTTP_400_BAD_REQUEST,
@@ -26,12 +27,14 @@ class A_contacts_list(User_permissions):
     # Creates a new Contact List for a User
     def post(self, request):
         request.data["user_id"] = request.user
-        new_list = Contactslist(**request.data)
-        try:
-            new_list.save()
-            return Response(status=HTTP_201_CREATED)
-        except:
-            return Response("Contact List already exists for this user", status=HTTP_400_BAD_REQUEST)
+        if not Contactslist.objects.filter(user_id=request.user).exists():
+            try:
+                new_list = Contactslist(**request.data)
+                new_list.save()
+                return Response(status=HTTP_201_CREATED)
+            except:
+                return Response("Contact List already exists for this user", status=HTTP_400_BAD_REQUEST)
+        return Response("Contacts List already exists for this user.", status=HTTP_200_OK)
 
 class All_clients(User_permissions):
     # Gets a list of all clients for the logged-in user

@@ -5,9 +5,10 @@ class ASubtaskSerializer(ModelSerializer):
 
   class Meta:
     model = Subtaskmenu
-    fields = [
-      'title',
-      'details',
-      'essential',
-      'connected_task_id'
-    ]
+    fields = '__all__'
+    # [
+    #   'title',
+    #   'details',
+    #   'essential',
+    #   'connected_task_id'
+    # ]
