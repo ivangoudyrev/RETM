@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { api } from "../utilities"
 import Property from "../components/Property"
+import AddressLookup from "../components/AddressLookup";
 
 export default function PropertiesPage(){
+
   const [newStreet, setNewStreet] = useState("")
   const [newCity, setNewCity] = useState("")
   const [newState, setNewState] = useState("")
@@ -13,6 +15,9 @@ export default function PropertiesPage(){
   const [showAddPropertyBox, setShowAddPropertyBox] = useState(true)
   const [showNewPropertyBox, setShowNewPropertyBox] = useState(false)
   const [properties, setProperties] = useState([])
+
+  const [newAddress, setNewAddress] = useState([])
+
 
   // This function opens the Add Property form and hides the Add Property button
   const toggleNewPropertyBox = () => {
@@ -53,7 +58,8 @@ export default function PropertiesPage(){
   // This function initiates a POST request to the server to add a new property
   // It also closes the Add Property Form and initiates and triggers the getProperties
   // function to re-pull a new list of properties
-  const addProperty = async() => {
+  const addProperty = async(e) => {
+    e.preventDefault();
     await api.post("properties/", {
       "street" : newStreet,
       "city" : newCity,
@@ -70,9 +76,11 @@ export default function PropertiesPage(){
   // This function initiates a DELETE request to the server to delete a specific
   // property.  It also triggers the getProperties function to re-pull a new list
   // of properties.
-  const removeProperty = async(id) => {
-    await api.delete(`properties/${id}/`)
-    getProperties();
+  const removeProperty = async(e, id) => {
+    e.preventDefault();
+    let response = await api.delete(`properties/${id}/`)
+    setProperties(response.data);
+    // console.log(response.data);
   }
 
   // This function initiates a PUT request to the server to edit a specific
@@ -83,24 +91,197 @@ export default function PropertiesPage(){
     getProperties();
   }
 
+
   return(
     <>
-    <div id="page_title_container">
+                  
+    <div className="container">
+      <div className="row mt-2 border">
+        <div className="col-lg-8 col-12">
+          <p className="h1">Properties</p>
+          <div className="row g-3">
+            <div className="col-12">
+              {showAddPropertyBox ? (
+                <div 
+                  className="d-grid gap-2 d-md-flex justify-content-md-end mt-2"
+                  >                
+                  <button 
+                    className="btn btn-primary" 
+                    type="button"
+                    onClick={toggleNewPropertyBox}
+                  >Add a new Property</button>
+                </div>
+              ) : (
+                <div className="card border-2">
+                  <div className="toast-header bg-secondary text-white d-flex justify-content-between align-items-center p-2">
+                    <p className="h5">New Property</p>
+                  </div>
+                  <AddressLookup
+                    newAddress = {newAddress}
+                    setNewAddress = {setNewAddress}
+                    setNewStreet = {setNewStreet}
+                    setNewCity = {setNewCity}
+                    setNewState = {setNewState}
+                    setNewZip = {setNewZip}
+                  />
+          
+                  <form className="row g-3 p-2">
+                    <div className="col-md-10">
+                      <label htmlFor="street" className="form-label">Street</label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        id="street"
+                        value={newStreet}
+                        onChange={(e) => setNewStreet(e.target.value)}
+                      />
+                    </div>
+                    <div className="col-md-3">
+                      <label htmlFor="city" className="form-label">City</label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        id="city"
+                        value={newCity}
+                        onChange={(e) => setNewCity(e.target.value)}
+                      />
+                    </div>
+                    <div className="col-md-2">
+                      <label htmlFor="state" className="form-label">State</label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        id="state"
+                        value={newState}
+                        onChange={(e) => setNewState(e.target.value)}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="zip" className="form-label">Zip Code</label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        id="zip"
+                        value={newZip}
+                        onChange={(e) => setNewZip(e.target.value)}
+                      />
+                    </div>
+                    <div className="row mt-3">
+                      <div className="col">
+                        <label className="form-check-label " htmlFor="hoa-checkbox">HOA:</label>
+                        <input 
+                          className="form-check-input mx-2"
+                          id="hoa-checkbox"
+                          type="checkbox" 
+                          checked={newHOA}
+                          onChange={(e) => setNewHOA(e.target.checked)}
+                          // disabled
+                        />
+                      </div>
+                      <div className="col">
+                        <label className="form-check-label" htmlFor="well-checkbox">Well:</label>
+                        <input 
+                          className="form-check-input mx-2"
+                          id="well-checkbox"
+                          type="checkbox" 
+                          checked={newWell}
+                          onChange={(e) => setNewWell(e.target.checked)}
+                          // disabled
+                        />
+                      </div>
+                      <div className="col">
+                        <label className="form-check-label" htmlFor="septic-checkbox">Septic:</label>
+                        <input 
+                          className="form-check-input mx-2"
+                          id="septic-checkbox"
+                          type="checkbox" 
+                          checked={newSeptic}
+                          onChange={(e) => setNewSeptic(e.target.checked)}
+                          // disabled
+                        />    
+                      </div>
+                    </div>
+                    
+                    {/* <div className="col-10">
+                      <label htmlFor="input-notes" className="form-label">Notes</label>
+                      <textarea 
+                        id="input-notes"
+                        className="form-control" 
+                        aria-label="With textarea"
+                        value={newNotes}
+                        onChange={(e) => setNewNotes(e.target.value)}
+                      >
+                      </textarea>
+                    </div> */}
+                    
+                    <div className="col-12">
+                      <button 
+                        type="submit" 
+                        className="btn btn-outline-secondary"
+                        onClick={toggleAddPropertyBox}
+                      >Discard</button>
+                      <button 
+                        type="submit" 
+                        className="btn btn-primary mx-2"
+                        onClick={(e) => addProperty(e)}
+                      >Save</button>
+                    </div>
+                  </form>
+                </div>
+              )}
+              <div>
+                {
+                  // properties.length === 0
+                  // <div>Loading...</div>
+                  properties.map((property) => {
+                    return <Property 
+                      key={property.id}
+                      property = {property}
+                      removeProperty = {removeProperty} 
+                      setNewStreet = {setNewStreet}
+                      setNewCity = {setNewCity}
+                      setNewState = {setNewState}
+                      setNewZip = {setNewZip}
+                      setNewHOA = {setNewHOA}
+                      setNewWell = {setNewWell}
+                      setNewSeptic = {setNewSeptic}
+                      editProperty = {editProperty}
+                    />
+                  })
+                }
+                </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{/* 
+
+    <div className="page_title_container">
       <h1>Properties</h1>
     </div>
-    <div id="below_title_container">
-      <div id="left_side_container">
+    <div className="below_title_container">
+      <div className="left_side_container">
         <div 
           id="add_button_container"
           style={{ display: showAddPropertyBox ? "" : "none" }}>
           <button onClick={toggleNewPropertyBox}>Add Property</button>
         </div>
-        {/* An input container to add new addresses */}
         <div 
           id="new_property_form_container" 
           className="property_container"
           style={{ display: showNewPropertyBox ? "" : "none" }}>
           <div className="property_info_container">
+            
             <div className="street">
               <input 
                 className="street_dynamic_input"
@@ -203,7 +384,7 @@ export default function PropertiesPage(){
         </div>
         <div id="tasks_container"></div>
       </div>
-    </div>
+    </div> */}
     </>
   )
 }

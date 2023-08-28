@@ -6,13 +6,18 @@ import PropertiesPage from "./pages/PropertiesPage.jsx";
 import TransactionsPage from "./pages/TransactionsPage.jsx";
 import PendingTransactionsPage from "./pages/PendingTransactionsPage";
 import CompletedTransactionsPage from "./pages/CompletedTransactionsPage";
+import TransactionPage from "./pages/TransactionPage";
 import TasksPage from "./pages/TasksPage.jsx";
 import AgentsPage from "./pages/AgentsPage";
 import ClientsPage from "./pages/ClientsPage";
 import InspectorsPage from "./pages/InspectorsPage";
 import LendersPage from "./pages/LendersPage";
 import TitleCosPage from "./pages/TitleCosPage";
+import TasksTemplatesPage from "./pages/TasksTemplatesPage";
+import TasksTemplatesBuyPage from "./pages/TasksTemplatesBuyPage";
 import App from "./App";
+import NewTransactionPage from "./pages/NewTransactionPage";
+import TaskListPage from "./pages/TaskListPage";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +41,14 @@ export const router = createBrowserRouter([
         element: <TransactionsPage/>
       },
       {
+        path: "transactions/:transactionId",
+        element: <TransactionPage/>
+      },
+      {
+        path: "transactions/new",
+        element: <NewTransactionPage/>
+      },
+      {
         path: "transactions/pending",
         element: <PendingTransactionsPage/>
       },
@@ -46,6 +59,10 @@ export const router = createBrowserRouter([
       // {
       //   path: "transactions/archived",
       //   element: <ArchivedTransactionsPage/>
+      // },
+      // {
+      //   path: "transactions/transaction",
+      //   element: <TransactionPage/>
       // },
       {
         path: "contacts",
@@ -80,12 +97,17 @@ export const router = createBrowserRouter([
         element: <TasksPage/>
       },
       {
-        path: "tasks",
-        element: <TasksPage/>
+        path: "tasks/:transactionId",
+        element: <TaskListPage/>
       },
-      
-
+      {
+        path: "tasks/templates",
+        element: <TasksTemplatesPage/>
+      },
+      {
+        path: "tasks/templates/buy",
+        element: <TasksTemplatesBuyPage/>
+      }
     ]
-
   }
 ])

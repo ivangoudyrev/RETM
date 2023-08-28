@@ -3,6 +3,7 @@ from user_app.views import User_permissions
 
 from rest_framework.response import Response
 from rest_framework.status import (
+    HTTP_200_OK,
     HTTP_201_CREATED,
     HTTP_204_NO_CONTENT,
     HTTP_400_BAD_REQUEST,
@@ -53,5 +54,5 @@ class A_property(User_permissions):
         a_property = get_object_or_404(request.user.properties, id=id)
         a_property.delete()
         properties = APropertySerializer(request.user.properties, many=True)
-        return Response(properties.data, status=HTTP_204_NO_CONTENT)
+        return Response(properties.data, status=HTTP_200_OK)
 

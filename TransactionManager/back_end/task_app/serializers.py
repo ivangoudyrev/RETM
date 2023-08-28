@@ -1,7 +1,7 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Task
 
-class AbbrvTaskSerializer(ModelSerializer):
+class AbbrvTaskSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = Task
@@ -12,16 +12,21 @@ class AbbrvTaskSerializer(ModelSerializer):
       'subtasks'  
     ]
 
-class ATaskSerializer(ModelSerializer):
+class ATaskSerializer(serializers.ModelSerializer):
+  
+  due_date = serializers.DateTimeField(format='%Y-%m-%dT%H:%M:%S', input_formats=None, default_timezone=None)
 
   class Meta:
     model = Task
     fields = [
+      'id',
+      'type',
+      'complete',
+      'due_date',
       'title',
       'details',
-      'due_date',
-      'complete',
       'essential',
       'notes',
-      'subtasks'  
+      'subtasks',
+      'transaction_id'
     ]

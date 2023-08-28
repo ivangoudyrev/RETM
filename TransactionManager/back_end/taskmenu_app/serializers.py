@@ -5,10 +5,11 @@ class ATaskSerializer(ModelSerializer):
 
   class Meta:
     model = Taskmenu
-    fields = [
-      'type'
-      'title',
-      'details',
-      'essential',
-      'subtasks'
-    ]
+    fields = '__all__'
+    # [
+    #   'type',
+    #   'title',
+    #   'details',
+    #   'essential',
+    #   'subtasks'
+    # ]

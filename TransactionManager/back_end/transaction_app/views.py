@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from user_app.views import User_permissions
 from rest_framework.response import Response
 from rest_framework.status import (
+  HTTP_200_OK,
   HTTP_201_CREATED,
   HTTP_204_NO_CONTENT,
   HTTP_400_BAD_REQUEST,
@@ -15,7 +16,8 @@ from .serializers import ATransactionSerializer, AbbrvTransactionSerializer
 class All_transactions(User_permissions):
   # Get a list of all Transactions for the user
   def get(self, request):
-    transactions = AbbrvTransactionSerializer(request.user.transactions, many=True)
+    transactions_ordered = request.user.transactions.order_by('closing_date')
+    transactions = AbbrvTransactionSerializer(transactions_ordered, many=True)
     return Response(transactions.data)
 
   # Creates a Transaction instance for the logged-in user 
@@ -33,12 +35,16 @@ class A_transaction(User_permissions):
     
     # Update a transaction by-id
     def put(self, request, id):
-        existing_transaction = get_object_or_404(request.user.transactions, id=id)
-        serializer = ATransactionSerializer(existing_transaction, data=request.data)    
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+      # print("Found Transaction:", id)
+      print("Request:", request.data)
+      existing_transaction = get_object_or_404(request.user.transactions, id=id)
+      serializer = ATransactionSerializer(existing_transaction, data=request.data)    
+      if serializer.is_valid():
+        serializer.save()
+        print("Serializer valid")
+        print("Serializer:", serializer.data)
+        return Response(serializer.data, status=HTTP_200_OK)
+      return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     
     # Delete a property by-id
     def delete(self, request, id):

@@ -11,7 +11,9 @@ class Subtask(models.Model):
     default=False
   )
   essential = models.BooleanField(
-    default=False
+    default=False,
+    null=True,
+    blank=True
   )
   notes = models.TextField(null=True, blank=True)
   task_id = models.ForeignKey(

@@ -4,6 +4,7 @@ from user_app.models import User
 # Create your models here.
 class Taskmenu(models.Model):
     type = models.CharField(
+        default="Buy",
         max_length=4
     )
     title = models.CharField(
