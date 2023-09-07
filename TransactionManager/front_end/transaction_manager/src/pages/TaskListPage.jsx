@@ -28,6 +28,9 @@ export default function TaskListPage(){
 
   const [showNewTaskButton, setShowNewTaskButton] = useState(true);
   const [showNewTaskBox, setShowNewTaskBox] = useState(false);
+
+  const [showNewTaskForm, setShowNewTaskForm] = useState(false);
+
   
   useEffect(()=>{
     const getTransaction = async() => {
@@ -77,13 +80,14 @@ export default function TaskListPage(){
     }
   },[transaction])
 
-  const addTask = async() => {
+  const addTask = async(e) => {
+    e.preventDefault();
     let response = await api.post(`transactions/${transactionId}/tasks/`, {
       "type" : "Buy",
       "title" : newTitle,
       "details" : newDetails,
       "due_date" : newDueDate,
-      "complete" : newComplete,
+      "complete" : false,
       "essential": newEssential,
       "notes" : newNotes,
     })
@@ -105,27 +109,137 @@ export default function TaskListPage(){
     setShowNewTaskButton(false);
     setShowNewTaskBox(true);
   }
+
+  const toggleNewTaskForm = () => {
+    setShowNewTaskForm(!showNewTaskForm);
+    setNewTitle("");
+    setNewDueDate("");
+    setNewDetails("");
+    setNewComplete("");
+  }
   
   return (
     <>
     <div id="new-tasklist-container" className="container">
       <div className="row mt-2 border">
         <div className="col-lg-8 col-12">
-          <h1>PENDING: {property?.street}</h1>
+          <p className="h2">PENDING: {property?.street}</p>
           <form className="row g-3">
             <div className="col-12">
               <ul className="nav nav-tabs">
-                <li className="nav-item">
+                <li className="nav-item ">
                   <Link to={`/transactions/${transactionId}`} className="nav-link">
-                    <p className="h5">Transaction Details</p>
+                    <p className="h6">Transaction Details</p>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to={`/tasks/${transactionId}`} className="nav-link active" aria-current="page">
-                    <p className="h5">Transaction Task List</p>
+                    <p className="h6">Transaction Task List</p>
                   </Link>
                 </li>
               </ul>
+
+              {/* New Task Button */}
+              
+              {!showNewTaskForm ? (
+              <div className="d-grid gap-2 mt-3 mb-2 d-md-flex justify-content-md-center">
+                <button 
+                  className="btn btn-outline-secondary btn-sm me-md-2 mt-1 mb-1" 
+                  type="button"
+                  onClick={toggleNewTaskForm}>
+                  Add a Task</button>
+              </div>
+
+              ) : ( 
+
+              // New Task Input Form
+              <div 
+                // style={{ display: showNewTaskWindow ? "" : "none" }}
+                className="card mt-2 bg-secondary pl-1">
+                <div className="toast-header d-flex justify-content-between align-items-center">
+
+                  <input 
+                    type="text" 
+                    id="task-input"
+                    className="form-control mx-1 mt-1 mb-1"
+                    placeholder="Add New Task Title"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                  />
+                  <div>
+                    <div className="container">
+
+                      <button 
+                        type="button" 
+                        className="btn btn-outline-primary bg-white text-primary m-1 p-1"  
+                        aria-label="Edit"
+                        onClick={toggleNewTaskForm}
+                        // style={{ display: toggleEditMode ? "" : "none" }}
+                      >Discard</button>
+
+                      <button 
+                        type="button" 
+                        className="btn btn-warning m-1 p-1"  
+                        aria-label="Edit"
+                        onClick={(e) => addTask(e)}
+                        // style={{ display: toggleEditMode ? "" : "none" }}
+                      >Save</button>
+                    </div>
+                  
+                  </div>        
+                </div>
+                <div className="card-body bg-secondary-subtle text-emphasis-secondary p-2">
+                  <div id="inspection-emd-contingency-input" className="input-group g-3 ml-2 mb-2">
+                    <span className="input-group-text" id="basic-addon1">Due:</span>
+                    
+                    <input 
+                      // style={{ display: purchaseDetailsEditMode ? "" : "none" }}
+                      type="datetime-local" 
+                      className="form-control" 
+                      id="ratifydate"
+                      placeholder="Enter Due Date"
+                      value={newDueDate}
+                      onChange={(e) => setNewDueDate(e.target.value)} 
+                    />
+                  </div>
+                  <div className="input-group mb-2">
+
+                    <span className="input-group-text">Details</span>
+                    <textarea 
+                      className="form-control" 
+                      placeholder="Add a description of this task"
+                      aria-label="With textarea"
+                      value={newDetails}
+                      onChange={(e) => setNewDetails(e.target.value)}
+                    >
+                    </textarea>
+                  </div>
+                  <div className="input-group">
+                    <p></p>
+                    <span className="input-group-text">Notes</span>
+                    <textarea 
+                      className="form-control" 
+                      aria-label="With textarea"
+                      placeholder="Add some notes specific to this transaction"
+                      value={newNotes}
+                      onChange={(e) => setNewNotes(e.target.value)}
+                    >
+                    </textarea>
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* )} */}
+
+
+              
+            
+              
+              
+
+
+
               <div>
                 {
                   tasks?.map((task) => {

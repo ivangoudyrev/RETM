@@ -60,7 +60,8 @@ export default function ClientsPage(){
   // This function initiates a POST request to the server to add a new property
   // It also closes the Add Property Form and initiates and triggers the getProperties
   // function to re-pull a new list of properties
-  const addClient = async() => {
+  const addClient = async(e) => {
+    e.preventDefault();
     await api.post("contacts/clients/", {
       "first_name" : newFirstName,
       "mid_init" : newMiddleName,
@@ -102,27 +103,27 @@ export default function ClientsPage(){
               <ul className="nav nav-tabs">
                 <li className="nav-item">
                   <Link to={`/contacts/clients`} className="nav-link active bg-secondary text-white">
-                    <p className="h5">Clients</p>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to={`/contacts/lenders`} className="nav-link text-black border" aria-current="page">
-                    <p className="h5">Lenders</p>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to={`/contacts/titlecos`} className="nav-link text-black border" aria-current="page">
-                    <p className="h5">Title Companies</p>
+                    <p className="h6">Clients</p>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to={`/contacts/inspectors`} className="nav-link text-black border" aria-current="page">
-                    <p className="h5">Inspectors</p>
+                    <p className="h6">Inspectors</p>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={`/contacts/lenders`} className="nav-link text-black border" aria-current="page">
+                    <p className="h6">Lenders</p>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={`/contacts/titlecos`} className="nav-link text-black border" aria-current="page">
+                    <p className="h6">Title Companies</p>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to={`/contacts/agents`} className="nav-link text-black border" aria-current="page">
-                    <p className="h5">Agents</p>
+                    <p className="h6">Agents</p>
                   </Link>
                 </li>
               </ul>

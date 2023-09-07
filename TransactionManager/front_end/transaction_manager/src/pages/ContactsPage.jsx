@@ -4,7 +4,7 @@ export default function ContactsPage(){
   return(
     <>
     <div className="page_title_container">
-      <h1>Contacts</h1>
+      <p className="h2">Contacts</p>
     </div>
     <div className="below_title_container">
       <div className="left_side_container">

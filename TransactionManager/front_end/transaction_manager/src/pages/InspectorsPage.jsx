@@ -57,7 +57,8 @@ export default function InspectorsPage(){
   // This function initiates a POST request to the server to add a new property
   // It also closes the Add Property Form and initiates and triggers the getProperties
   // function to re-pull a new list of properties
-  const addInspector = async() => {
+  const addInspector = async(e) => {
+    e.preventDefault();
     await api.post("contacts/inspectors/", {
       "first_name" : newFirstName,
       "mid_init" : newMiddleName,

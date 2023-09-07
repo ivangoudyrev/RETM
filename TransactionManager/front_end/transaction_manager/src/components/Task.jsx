@@ -149,7 +149,7 @@ export default function Task(props) {
       essential: editEssential,
       notes: editNotes,
     }
-    console.log(updatedTask);
+    // console.log(updatedTask);
     editTask(id, updatedTask);
   }
 
@@ -250,7 +250,7 @@ export default function Task(props) {
           />
           {!editMode ? (
             // Task Title Published Box
-            <p className="h5 m-0">{task?.title}</p>
+            <p className="h6 m-0">{task?.title}</p>
           ) : (
             // Task Title Input Box
             <input 
@@ -268,6 +268,7 @@ export default function Task(props) {
             <button 
               type="button" 
               className="btn btn-primary m-2 p-1"  
+              style={{ '--bs-btn-padding-y': '.25rem', '--bs-btn-padding-x': '.5rem', '--bs-btn-font-size': '.75rem' }}
               aria-label="Edit"
               onClick={toggleEditMode}
               // style={{ display: !editMode ? "none" : "" }}
@@ -281,7 +282,12 @@ export default function Task(props) {
               className="btn btn-outline-secondary bg-white m-1 p-1"  
               aria-label="Edit"
               onClick={discardChanges}
-              style={{ display: toggleEditMode ? "" : "none" }}
+              style={{ 
+                display: toggleEditMode ? "" : "none",
+                '--bs-btn-padding-y': '.25rem',
+                '--bs-btn-padding-x': '.5rem',
+                '--bs-btn-font-size': '.75rem' 
+              }}
             >Discard</button>
 
             {/* Task Save Changes Button */}
@@ -290,7 +296,12 @@ export default function Task(props) {
               className="btn btn-warning m-1 p-1"  
               aria-label="Edit"
               onClick={saveChanges}
-              style={{ display: toggleEditMode ? "" : "none" }}
+              style={{ 
+                display: toggleEditMode ? "" : "none",
+                '--bs-btn-padding-y': '.25rem',
+                '--bs-btn-padding-x': '.5rem',
+                '--bs-btn-font-size': '.75rem'
+              }}
             >Save</button>
 
             {/* Task Delete Button  */}
@@ -299,7 +310,12 @@ export default function Task(props) {
               className="btn btn-danger m-1 p-1"  
               aria-label="Delete"
               onClick={() => removeTask(taskId)}
-              style={{ display: toggleEditMode ? "" : "none" }}
+              style={{
+                display: toggleEditMode ? "" : "none",
+                '--bs-btn-padding-y': '.25rem',
+                '--bs-btn-padding-x': '.5rem',
+                '--bs-btn-font-size': '.75rem'
+              }}
             >Delete</button>
             </div>
           )}

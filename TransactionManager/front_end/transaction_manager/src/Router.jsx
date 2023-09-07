@@ -18,6 +18,7 @@ import TasksTemplatesBuyPage from "./pages/TasksTemplatesBuyPage";
 import App from "./App";
 import NewTransactionPage from "./pages/NewTransactionPage";
 import TaskListPage from "./pages/TaskListPage";
+import TasksMasterPage from "./pages/TasksMasterPage";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
       {
         path: "tasks",
         element: <TasksPage/>
+      },
+      {
+        path: "tasks/master",
+        element: <TasksMasterPage/>
       },
       {
         path: "tasks/:transactionId",

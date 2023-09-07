@@ -149,7 +149,7 @@ export default function Inspector(props){
             <button 
               // type="submit" 
               className="btn btn-warning mx-2"
-              onClick={saveChanges}
+              onClick={(e) => saveChanges(e)}
             >Save</button>
             <button 
               // type="submit" 

@@ -26,7 +26,7 @@ export default function LendersPage(){
   // This function closes the Add Property form and unhides the Add Property button
   const toggleAddLenderBox = () => {
     setShowNewLenderBox(false);
-    // setShowAddLenderBox(true);
+    setShowAddLenderBox(true);
     clearNewLenderBox();
   }
 

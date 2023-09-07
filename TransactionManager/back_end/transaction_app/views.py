@@ -7,8 +7,8 @@ from rest_framework.status import (
   HTTP_204_NO_CONTENT,
   HTTP_400_BAD_REQUEST,
 )
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
+# from rest_framework.permissions import IsAuthenticated
+# from rest_framework.authentication import TokenAuthentication
 
 from .models import Transaction
 from .serializers import ATransactionSerializer, AbbrvTransactionSerializer

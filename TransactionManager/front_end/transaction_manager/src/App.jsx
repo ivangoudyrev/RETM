@@ -111,13 +111,10 @@ export default function App() {
                     <Link to="/properties" className="nav-link active" aria-current="page" href="#">Properties</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/tasks" className="nav-link disabled" aria-disabled="true" aria-current="page" href="#">Tasks</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/tasks" className="nav-link disabled" aria-disabled="true" aria-current="page" href="#">Tasks</Link>
+                    <Link to="/tasks" className="nav-link active" aria-current="page" href="#">Tasks</Link>
                   </li>
                 </ul>
-                <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div className="ms-auto d-flex align-items-center">
                   <button className="btn btn-secondary" type="button" onClick={logOut}>Log Out</button>
                 </div>
               </div>

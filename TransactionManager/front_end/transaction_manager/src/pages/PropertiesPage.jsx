@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { api } from "../utilities"
 import Property from "../components/Property"
 import AddressLookup from "../components/AddressLookup";
+import { useRef } from "react";
 
 export default function PropertiesPage(){
 
@@ -18,6 +19,16 @@ export default function PropertiesPage(){
 
   const [newAddress, setNewAddress] = useState([])
 
+  // const autocompleteInputRef = useRef(null);
+  // let autocomplete = useRef(null);
+
+  // useEffect(() => {
+  //   window.initAutocomplete = initAutocomplete;
+  //   loadGoogleMapsScript();
+  //   return () => {
+  //     window.google.maps.event.clearInstanceListeners(autocomplete.current);
+  //   };
+  // }, []);
 
   // This function opens the Add Property form and hides the Add Property button
   const toggleNewPropertyBox = () => {
@@ -92,9 +103,75 @@ export default function PropertiesPage(){
   }
 
 
+  // const loadGoogleMapsScript = () => {
+  //   const existingScript = document.getElementById("googleMapsScript");
+  
+  //   if (!existingScript) {
+  //     const script = document.createElement("script");
+  //     script.src =
+  //       "https://maps.googleapis.com/maps/api/js?key=AIzaSyAn4v_3JvUjuyXfFktZU3HImPAV5prllpE&libraries=places&callback=initAutocomplete";
+  //     script.id = "googleMapsScript";
+  //     document.body.appendChild(script);
+  //   }
+  // };
+  // const initAutocomplete = () => {
+  //   autocomplete.current = new window.google.maps.places.Autocomplete(
+  //     autocompleteInputRef.current,
+  //     {
+  //       types: ["address"],
+  //       componentRestrictions: { country: "us" },
+  //     }
+  //   );
+  //   autocomplete.current.addListener("place_changed", handlePlaceSelect);
+  // };
+
+  // const handlePlaceSelect = () => {
+  //   const addressObject = autocomplete.current.getPlace();
+  //   const address = addressObject.address_components;
+
+  //   if (address) {
+  //     setNewAddress(address);
+  //   }
+  // };
+
+  // const selectAddress = () => {
+  //   if (newAddress.length > 1) {
+  //     let street = "";
+  //     for (let i = 0; i < newAddress.length; i++) {
+  //       if (newAddress[i].types[0] === "street_number") {
+  //         street = `${newAddress[i].short_name}`;
+  //       } else if (newAddress[i].types[0] === "route") {
+  //         setNewStreet(`${street} ${newAddress[i].short_name}`);
+  //       } else if (newAddress[i].types[0] === "locality") {
+  //         setNewCity(`${newAddress[i].short_name}`);
+  //       } else if (newAddress[i].types[0] === "administrative_area_level_1") {
+  //         setNewState(`${newAddress[i].short_name}`);
+  //       } else if (newAddress[i].types[0] === "postal_code") {
+  //         setNewZip(`${newAddress[i].short_name}`);
+  //       }
+  //     }
+  //     setNewAddress([]);
+  //     autocompleteInputRef.current.value = '';
+  //     initAutocomplete();
+  //   }
+  // };
+
   return(
     <>
-                  
+    {/* <div className="address-lookup">
+      <div>
+        <label htmlFor="address-lookup-field">Google Address Lookup:</label>
+      </div>
+      <input
+        id="address-lookup-input"
+        ref={autocompleteInputRef}
+        placeholder="Enter your address"
+      />
+      <button id="address-lookup-button" onClick={selectAddress}>
+        Auto-fill
+      </button>
+    </div> */}
+
     <div className="container">
       <div className="row mt-2 border">
         <div className="col-lg-8 col-12">
@@ -116,14 +193,14 @@ export default function PropertiesPage(){
                   <div className="toast-header bg-secondary text-white d-flex justify-content-between align-items-center p-2">
                     <p className="h5">New Property</p>
                   </div>
-                  <AddressLookup
+                  {/* <AddressLookup
                     newAddress = {newAddress}
                     setNewAddress = {setNewAddress}
                     setNewStreet = {setNewStreet}
                     setNewCity = {setNewCity}
                     setNewState = {setNewState}
                     setNewZip = {setNewZip}
-                  />
+                  /> */}
           
                   <form className="row g-3 p-2">
                     <div className="col-md-10">
