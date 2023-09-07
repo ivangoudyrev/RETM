@@ -12,9 +12,11 @@ template_app/.fixtures
 title_app/.fixtures
 transaction_app/.fixtures
 user_app/.fixtures
+agent_app/__pycache__/
 
 # Byte-compiled / optimized / DLL files
 **/__pycache__/
+# agent_app/.__pycache__
 # __pycache__/
 *.py[cod]
 
