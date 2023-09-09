@@ -371,24 +371,24 @@ export default function TransactionPage(){
     <div id="new_transaction_container" className="container">
       <div className="row mt-2 border">
         <div className="col-lg-8 col-12">
-          <h1>PENDING: {property?.street}</h1>
+          <p className="h2">PENDING: {property?.street}</p>
           <form className="row g-3">
             <div className="col-12">
               <ul className="nav nav-tabs">
                 <li className="nav-item">
-                  <Link to={`/transactions/${transactionId}`} className="nav-link active" aria-current="page" href="#">
-                    <p className="h5">Transaction Details</p>
+                  <Link to={`/transactions/${transactionId}`} className="nav-link active bg-secondary text-white" aria-current="page" href="#">
+                    <p className="h6">Transaction Details</p>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={`/tasks/${transactionId}`} className="nav-link" href="#">
-                    <p className="h5">Transaction Task List</p>
+                  <Link to={`/tasks/${transactionId}`} className="nav-link text-black border" href="#">
+                    <p className="h6">Transaction Task List</p>
                   </Link>
                 </li>
               </ul>
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Property Details</h3>
+                  <h4 className="card-title p-2">Property Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -466,7 +466,7 @@ export default function TransactionPage(){
 
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Purchase Details</h3>
+                  <h4 className="card-title p-2">Purchase Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -680,7 +680,7 @@ export default function TransactionPage(){
 
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Client Details</h3>
+                  <h4 className="card-title p-2">Client Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -728,7 +728,7 @@ export default function TransactionPage(){
 
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Inspector Details</h3>
+                  <h4 className="card-title p-2">Inspector Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -776,7 +776,7 @@ export default function TransactionPage(){
 
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Lender Details</h3>
+                  <h4 className="card-title p-2">Lender Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -824,7 +824,7 @@ export default function TransactionPage(){
 
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Title Company Details</h3>
+                  <h4 className="card-title p-2">Title Company Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -872,7 +872,7 @@ export default function TransactionPage(){
 
               <div className="card mt-2">
                 <div className="toast-header d-flex justify-content-between align-items-center">
-                  <h3 className="card-title p-2">Seller's Agent Details</h3>
+                  <h4 className="card-title p-2">Seller's Agent Details</h4>
                   <div>
                     <button 
                       type="button" 
@@ -909,7 +909,7 @@ export default function TransactionPage(){
                     value={newAgent}
                     onChange={(e)=> setNewAgent(e.target.value)}>
                     <option value="">Select a new agent</option>
-                    {agents?.map(titleco => (
+                    {agents?.map(agent => (
                       <option key={agent?.id} value={agent?.id}>
                         {agent?.first_name} {agent?.last_name} - {agent?.company}
                       </option>
