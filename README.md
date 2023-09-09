@@ -4,6 +4,9 @@ Summary: This application will assist real estate agents (or DIY home buyers and
 - front-end: ReactJS
 - back-end: Django
 
+## Deployed at
+http://retm.goudycode.com
+
 ## Front-end Design
 https://www.tldraw.com/v/7-YgfK4BPFELxCl_f9FlW?viewport=4580%2C85%2C819%2C722&page=page%3AglREP5yhNeTLNZpjSz--d
 
