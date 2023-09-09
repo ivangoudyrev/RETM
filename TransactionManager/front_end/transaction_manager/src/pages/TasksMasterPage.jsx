@@ -26,16 +26,16 @@ export default function TasksMasterPage() {
     <div className="container">
       <div className="row mt-2 border">
         <div className="col-lg-8 col-12">
-        <p className="h2">Master Task List</p>
+          <p className="h2">Tasks</p>
           <div className="col-12">
             <ul className="nav nav-tabs">
               <li className="nav-item">
-                <Link to={`/contacts/clients`} className="nav-link active bg-secondary text-white">
+                <Link to={`/tasks/master`} className="nav-link active bg-secondary text-white">
                   <p className="h6">Master Task List</p>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={`/contacts/lenders`} className="nav-link text-black border" aria-current="page">
+                <Link to={`/tasks/templates/buy`} className="nav-link text-black border" aria-current="page">
                   <p className="h6">Task Templates</p>
                 </Link>
               </li>

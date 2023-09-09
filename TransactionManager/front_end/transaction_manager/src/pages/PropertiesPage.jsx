@@ -175,7 +175,7 @@ export default function PropertiesPage(){
     <div className="container">
       <div className="row mt-2 border">
         <div className="col-lg-8 col-12">
-          <p className="h1">Properties</p>
+          <p className="h2">Properties</p>
           <div className="row g-3">
             <div className="col-12">
               {showAddPropertyBox ? (

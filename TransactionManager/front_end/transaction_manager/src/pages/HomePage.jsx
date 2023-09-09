@@ -49,10 +49,10 @@ export default function HomePage(){
     <div id="homepage_container" className="container">
       <div className="row">
         <div className="col-lg-8 col-12">
-          <h1>Dashboard</h1>
+          <h2>Dashboard</h2>
           <div id="dashboard_items" className="container">
               <div className="container bg-secondary text-white">
-                <p className="h2 mb-0">Active Transactions</p>
+                <p className="h3 mb-0">Active Transactions</p>
               </div>
             <div id="active_transactions_container" className="container border mb-2 bg-secondary-subtle text-emphasis-secondary">
               <div className="d-grid justify-content-md-end mb-2">
@@ -80,7 +80,7 @@ export default function HomePage(){
               </div>          
             </div>
             <div id="active_tasklists_container" className="container border">
-              <h2>Active Task Lists</h2>
+              <h3>Active Task Lists</h3>
               <div className="list-group mb-2 text-emphasis-secondary">
                 {transactions.map((transaction) => {
                   const client = clients.find(client => client.id === transaction.client_id);

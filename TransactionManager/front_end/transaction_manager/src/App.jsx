@@ -118,7 +118,7 @@ export default function App() {
                       <Link to="/properties" className="nav-link active" onClick={handleNavCollapse}>Properties</Link>
                     </li>
                     <li className="nav-item">
-                      <Link to="/tasks" className="nav-link active" onClick={handleNavCollapse}>Tasks</Link>
+                      <Link to="/tasks/master" className="nav-link active" onClick={handleNavCollapse}>Tasks</Link>
                     </li>
                   </ul>
                   <div className="ms-auto d-flex align-items-center">
