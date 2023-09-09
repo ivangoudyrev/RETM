@@ -3,6 +3,7 @@ import { useState, useEffect, createContext } from "react";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import { api } from "./utilities";
 import RETMLogo from "./assets/images/4.png";
+import { useHistory } from 'react-router-dom'
 
 export const userContext = createContext();
 
@@ -30,17 +31,32 @@ export default function App() {
   },[user])
   
   const whoAmI = async() => {
-    //let token = localStorage.getItem("token")
-    //if (token) {
-      //api.defaults.headers.common["Authorization"] = `Token ${token}`
-    let response = await api.get("users/")
-    if(response.data){
-      setUser(response.data)
-      navigate("home")
-    } else {
-      setUser(null)
-      navigate("login")
+    const history = useHistory();
+
+    try {
+      const response = await api.get('users/');
+      console.log('Response:', response)
+
+      if (response.data && response.data.user) {
+        setUser(response.data.user);
+        history.push('home');
+      } else {
+        setUser(null);
+        history.push('login')
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      setUser(null);
+      history.push('login');
     }
+    // let response = await api.get("users/")
+    // if(response.data){
+    //   setUser(response.data)
+    //   navigate("home")
+    // } else {
+    //   setUser(null)
+    //   navigate("login")
+    // }
   }
   
   const logOut = async() => {
