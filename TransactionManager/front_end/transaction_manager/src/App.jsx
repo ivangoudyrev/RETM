@@ -62,6 +62,11 @@ export default function App() {
     setTasks(response.data);
   }
 
+  const removeTask = async(id) => {
+    let response = await api.delete(`transactions/${transactionId}/tasks/${id}/`)
+    setTasks(response.data);
+  }
+
   const getTransactions = async() => {
     let response = await api.get("transactions/");
     setTransactions(response.data);
@@ -151,6 +156,7 @@ export default function App() {
           getProperties,
           getClients,
           getTasks,
+          removeTask,
           formatDate
           }}>
           <Outlet />
