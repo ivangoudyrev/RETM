@@ -128,12 +128,12 @@ export default function TaskListPage(){
             <div className="col-12">
               <ul className="nav nav-tabs">
                 <li className="nav-item ">
-                  <Link to={`/transactions/${transactionId}`} className="nav-link">
+                  <Link to={`/transactions/${transactionId}`} className="nav-link text-black border">
                     <p className="h6">Transaction Details</p>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={`/tasks/${transactionId}`} className="nav-link active" aria-current="page">
+                  <Link to={`/tasks/${transactionId}`} className="nav-link active bg-secondary text-white" aria-current="page">
                     <p className="h6">Transaction Task List</p>
                   </Link>
                 </li>
