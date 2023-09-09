@@ -1,9 +1,7 @@
-// import "./App.css";
 import { useState, useEffect, createContext } from "react";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import { api } from "./utilities";
 import RETMLogo from "./assets/images/4.png";
-//import { useHistory } from 'react-router-dom'
 
 export const userContext = createContext();
 
@@ -13,9 +11,10 @@ export default function App() {
   const [transactions, setTransactions] = useState([]);
   const [properties, setProperties] = useState([])
   const [clients, setClients] = useState([])
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true)
 
   const navigate = useNavigate();
-  // const RETMLogo = RETMLogo();
+
 
   useEffect(()=>{
     whoAmI();
@@ -31,7 +30,6 @@ export default function App() {
   },[user])
   
   const whoAmI = async() => {
-    //const history = useHistory();
 
     try {
       const response = await api.get('users/');
@@ -49,23 +47,12 @@ export default function App() {
       setUser(null);
       navigate('login');
     }
-    // let response = await api.get("users/")
-    // if(response.data){
-    //   setUser(response.data)
-    //   navigate("home")
-    // } else {
-    //   setUser(null)
-    //   navigate("login")
-    // }
   }
   
   const logOut = async() => {
     let response = await api.post("users/logout/")
-    // console.log(response)
     if(response.status === 204) {
-      //localStorage.removeItem("token")
       setUser(null)
-      //delete api.defaults.headers.common["Authorization"]
       navigate("/login")
     }
   }
@@ -98,46 +85,50 @@ export default function App() {
     return mm + '-' + dd + '-' + yyyy;
   }
 
+  const handleNavCollapse = () => {
+    setIsNavCollapsed(!isNavCollapsed);
+  }
+
   return (
     <div>
       <header>
         { user ?
           <>
           <div className="container">
-          <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-              <Link to="/home" className="navbar-brand">
-                <img src={RETMLogo} alt="Logo" style={{height:'50px'}} />
-              </Link>
-              {/* <span className="navbar-brand" href="#">RETM</span> */}
-              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link to="/home " className="nav-link active" aria-current="page" href="#">Dashboard</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/transactions" className="nav-link disabled" aria-disabled="true" aria-current="page" href="#">Transactions</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/contacts/clients" className="nav-link active" aria-current="page" href="#">Contacts</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/properties" className="nav-link active" aria-current="page" href="#">Properties</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/tasks" className="nav-link active" aria-current="page" href="#">Tasks</Link>
-                  </li>
-                </ul>
-                <div className="ms-auto d-flex align-items-center">
-                  <button className="btn btn-secondary" type="button" onClick={logOut}>Log Out</button>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+              <div className="container-fluid">
+                <Link to="/home" className="navbar-brand">
+                  <img src={RETMLogo} alt="Logo" style={{ height: '50px' }} />
+                </Link>
+                <button className="navbar-toggler" type="button" onClick={handleNavCollapse} aria-controls="navbarNav" aria-expanded={!isNavCollapsed ? true : false} aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNav">
+                  <ul className="navbar-nav">
+                    <li className="nav-item">
+                      <Link to="/home" className="nav-link active" onClick={handleNavCollapse}>Dashboard</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/transactions" className="nav-link disabled" onClick={handleNavCollapse}>Transactions</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/contacts/clients" className="nav-link active" onClick={handleNavCollapse}>Contacts</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/properties" className="nav-link active" onClick={handleNavCollapse}>Properties</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/tasks" className="nav-link active" onClick={handleNavCollapse}>Tasks</Link>
+                    </li>
+                  </ul>
+                  <div className="ms-auto d-flex align-items-center">
+                    <button className="btn btn-secondary" type="button" onClick={logOut}>Log Out</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </nav>
+            </nav>
           </div>
+    
           </>
           :
           <></>

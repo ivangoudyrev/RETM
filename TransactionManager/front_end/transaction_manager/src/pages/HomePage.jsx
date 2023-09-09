@@ -37,7 +37,7 @@ export default function HomePage(){
         console.error("Error initializing contact list:", error)
       }
     }
-    whoAmI()
+    // whoAmI()
     initiateContactList();
     getTransactions();
     getClients();
