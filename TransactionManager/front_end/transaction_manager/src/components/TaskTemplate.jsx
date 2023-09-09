@@ -83,6 +83,93 @@ export default function TaskTemplate (props) {
 
   return (
     <>
+    <div className="card mt-2 mb-2 pl-1 border-dark border-2">
+      <div className="toast-header bg-secondary text-white d-flex justify-content-between align-items-center">
+        <div className="form-check form-check-inline m-1">
+          {!editMode ? (
+            <p className="h6 m-0">{task?.title}</p>
+          ) : (
+            <input 
+            type="text" 
+            className="form-control"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            />
+          )} 
+        </div>
+        <div>
+          {!editMode ? (
+            // Task Edit Button
+            <button 
+              type="button" 
+              className="btn btn-primary m-2 p-1"  
+              style={{ '--bs-btn-padding-y': '.25rem', '--bs-btn-padding-x': '.5rem', '--bs-btn-font-size': '.75rem' }}
+              aria-label="Edit"
+              onClick={toggleEditMode}
+              // style={{ display: !editMode ? "none" : "" }}
+            >Edit</button>            
+          ) : (
+            <div className="container p-0">
+
+            {/* Task Discard Changes Button */}
+            <button 
+              type="button" 
+              className="btn btn-outline-secondary bg-white m-1 p-1"  
+              aria-label="Edit"
+              onClick={discardChanges}
+              style={{ 
+                display: toggleEditMode ? "" : "none",
+                '--bs-btn-padding-y': '.25rem',
+                '--bs-btn-padding-x': '.5rem',
+                '--bs-btn-font-size': '.75rem' 
+              }}
+            >Discard</button>
+
+            {/* Task Save Changes Button */}
+            <button 
+              type="button" 
+              className="btn btn-warning m-1 p-1"  
+              aria-label="Edit"
+              onClick={saveChanges}
+              style={{ 
+                display: toggleEditMode ? "" : "none",
+                '--bs-btn-padding-y': '.25rem',
+                '--bs-btn-padding-x': '.5rem',
+                '--bs-btn-font-size': '.75rem'
+              }}
+            >Save</button>
+
+            {/* Task Delete Button  */}
+            <button 
+              type="button" 
+              className="btn btn-danger m-1 p-1"  
+              aria-label="Delete"
+              onClick={() => removeTemplateTask(id)}
+              style={{
+                display: toggleEditMode ? "" : "none",
+                '--bs-btn-padding-y': '.25rem',
+                '--bs-btn-padding-x': '.5rem',
+                '--bs-btn-font-size': '.75rem'
+              }}
+            >Delete</button>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="input-group mb-2">
+        <span className="input-group-text">Details</span>
+        <textarea 
+          className="form-control"
+          aria-label="With textarea" 
+          value={newDetails}
+          onChange={(e) => setNewDetails(e.target.value)}
+          disabled={!editMode}
+        ></textarea>
+      </div>
+    </div>
+
+
+
     <div className="left_side_component">
       <div className="property_container">
         <div className="property_info_container">
