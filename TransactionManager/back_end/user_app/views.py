@@ -18,7 +18,7 @@ from .utilities import HttpOnlyToken
 
 
 class User_permissions(APIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [HttpOnlyToken]
     permission_classes = [IsAuthenticated]
 
 # Create your views here.
