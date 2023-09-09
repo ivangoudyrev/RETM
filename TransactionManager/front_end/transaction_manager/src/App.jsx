@@ -30,10 +30,11 @@ export default function App() {
   },[user])
   
   const whoAmI = async() => {
-    let token = localStorage.getItem("token")
-    if (token) {
-      api.defaults.headers.common["Authorization"] = `Token ${token}`
-      let response = await api.get("users/")
+    //let token = localStorage.getItem("token")
+    //if (token) {
+      //api.defaults.headers.common["Authorization"] = `Token ${token}`
+    let response = await api.get("users/")
+    if(response.data){
       setUser(response.data)
       navigate("home")
     } else {
@@ -46,9 +47,9 @@ export default function App() {
     let response = await api.post("users/logout/")
     // console.log(response)
     if(response.status === 204) {
-      localStorage.removeItem("token")
+      //localStorage.removeItem("token")
       setUser(null)
-      delete api.defaults.headers.common["Authorization"]
+      //delete api.defaults.headers.common["Authorization"]
       navigate("/login")
     }
   }

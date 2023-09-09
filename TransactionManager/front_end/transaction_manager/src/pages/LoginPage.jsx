@@ -44,10 +44,10 @@ export default function LoginPage() {
     });
     // console.log(response.data)
     let user = response.data.user;
-    let token = response.data.token;
+    //let token = response.data.token;
     setUser(user);
-    localStorage.setItem("token", token)
-    api.defaults.headers.common["Authorization"] = `Token ${token}`
+    //localStorage.setItem("token", token)
+    //api.defaults.headers.common["Authorization"] = `Token ${token}`
     navigate("/home")
   }
 

@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["0.0.0.0"]
 
 # Application definition
 
@@ -154,11 +154,18 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://example.com", #domain
+    "0.0.0.0",
+    #"https://retm.goudycode.com", #domain
     # "https://sub.example.com", #subdomain
-    "http://127.0.0.1:5173" #development server
+    #"http://127.0.0.1:5173" #development server
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = [""]
+SESSION_COOKIE_SECURE = True
+
+SESSION_COOKIE_HTTPONLY = True
+
+#CORS_ALLOW_ALL_ORIGINS = True
+
+#CSRF_TRUSTED_ORIGINS = [""]
