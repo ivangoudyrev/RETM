@@ -1,15 +1,21 @@
 import { api } from "../utilities";
 import SubTask from "./SubTask";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { userContext } from "../App";
 
 export default function Task(props) {
+  const {
+    removeTask
+  } = useContext(userContext);
+
   const {
     task,
     id,
     title,
     details,
     
-    removeTask,
+    // removeTask,
     editTask,
     
     
