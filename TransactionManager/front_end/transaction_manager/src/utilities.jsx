@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: "http://3.94.182.213/api/v1/"
+    baseURL: "https://retm.goudycode.com/api/v1/"
 });
