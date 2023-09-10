@@ -57,7 +57,7 @@ export default function TasksMasterPage() {
                   notes={task.notes}
                   removeTask={removeTask}
                   // addTask={addTask}
-                  editTask={editTask}
+                  // editTask={editTask}
                   // transactionId={transactionId}
                   setTasks={setTasks}
                 />

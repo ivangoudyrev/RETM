@@ -6,7 +6,8 @@ import { userContext } from "../App";
 
 export default function Task(props) {
   const {
-    removeTask
+    removeTask,
+    editTask
   } = useContext(userContext);
 
   const {
@@ -16,7 +17,7 @@ export default function Task(props) {
     details,
     
     // removeTask,
-    editTask,
+    // editTask,
     
     
     due_date,
@@ -156,7 +157,7 @@ export default function Task(props) {
       notes: editNotes,
     }
     // console.log(updatedTask);
-    editTask(id, updatedTask);
+    editTask(transactionId, id, updatedTask);
   }
 
   const discardChanges = () => {
