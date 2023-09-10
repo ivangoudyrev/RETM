@@ -61,10 +61,8 @@ export default function TasksMasterPage() {
                   // transactionId={transactionId}
                   setTasks={setTasks}
                 />
-
               })
             }
-
           </div>
         </div>
       </div>
