@@ -29,6 +29,10 @@ export default function TaskTemplate (props) {
   const [showNewSubTaskButton, setShowNewSubTaskButton] = useState(true);
   const [showNewSubTaskBox, setShowNewSubTaskBox] = useState(false);
 
+  const [addSubtaskMode, setAddSubtaskMode] = useState(false);
+
+  const [showSubtasks, setShowSubtasks] = useState(false);
+
   const relatedSubTasks = templateSubTasks.filter(subTask => subTask.task_id === id)
 
 
@@ -79,7 +83,23 @@ export default function TaskTemplate (props) {
     setNewSubTaskDetails("");
   }
 
+  const toggleSubtasksWindow = () => {
+    setShowSubtasks(!showSubtasks);
+  }
 
+  const toggleAddSubtaskMode = () => {
+    setAddSubtaskMode(!addSubtaskMode)
+  }
+
+  const discardSubtaskChanges = () => {
+    toggleAddSubtaskMode();
+    // console.log(relatedSubTasks.length)
+    if (!relatedSubTasks?.length>0) {
+      toggleSubtasksWindow();
+    }
+    // clear new subtask fields
+  }
+  
 
   return (
     <>
@@ -166,7 +186,128 @@ export default function TaskTemplate (props) {
           disabled={!editMode}
         ></textarea>
       </div>
+
+      {!showSubtasks ? (
+        <div>
+            <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+              <button 
+                // style={{ display: showSubtasks ? "none" : "" }}
+                className="btn btn-outline-secondary btn-sm me-md-2 mt-1 mb-1" 
+                onClick={toggleSubtasksWindow}
+                type="button">
+                Add Sub-Tasks</button>
+            </div>
+        </div>
+        ) : (
+        // SubTasks Area
+        <div 
+          // style={{ display: showSubtasks ? "" : "none" }}
+          className="card p-1 border-dark border-2 mt-2">
+          <div className="toast-header d-flex justify-content-between align-items-center">
+            <p className="h5 mx-1">Subtasks</p>
+            <div>
+                <button 
+                  type="button" 
+                  className="btn btn-outline-primary p-1"  
+                  aria-label="Add"
+                  onClick={toggleAddSubtaskMode}
+                  // style={{ display: addSubtaskMode ? "" : "none" }}
+                >Add Subtask</button>            
+            </div>
+          </div>
+
+          {/* New Subtask Form */}
+          <div 
+            className="card mt-2 pl-1 bg-secondary-subtle"
+            style={{ display: addSubtaskMode ? "" : "none" }}>
+            <div className="toast-header d-flex justify-content-between align-items-center">
+              <div id="task-input" className="form-check form-check-inline m-1 p-1">
+                
+                {/* New subtask Complete Checkbox */}
+                {/* <input 
+                  className="form-check-input" 
+                  type="checkbox" 
+                  id="inlineCheckbox1" 
+                  // value={newSubtaskComplete}
+                  checked={newSubTaskComplete}
+                  onChange={(e) => setNewSubTaskComplete(e.target.checked)}
+                /> */}
+
+                {/* New subtask title Input*/}
+                <input 
+                  type="text" 
+                  id="task-input"
+                  className="form-control mx-0"
+                  value={newSubTaskTitle}
+                  onChange={(e) => setNewSubTaskTitle(e.target.value)}
+                />                  
+              </div>              
+
+              <div>
+                {/* New Subtask Discard Button */}
+                <button 
+                  type="button" 
+                  className="btn btn-outline-secondary bg-white m-1 p-1"  
+                  aria-label="Edit"
+                  onClick={discardSubtaskChanges}
+                  // style={{ display: addSubtaskMode ? "" : "none" }}
+                >Discard</button>
+
+                {/* New Subtask Save button */}
+                <button 
+                  type="button" 
+                  className="btn btn-warning m-1 p-1"  
+                  aria-label="Edit"
+                  onClick={addTemplateSubTask}
+                  // style={{ display: toggleEditMode ? "" : "none" }}
+                >Save</button>
+              </div>        
+            </div>
+              <div className="card-body bg-light text-emphasis-secondary p-1">
+                
+                
+
+                {/* New Subtask Details */}
+                <div className="input-group mb-2">
+                  <span className="input-group-text">Details</span>
+                  <textarea 
+                    className="form-control" 
+                    aria-label="With textarea"
+                    value={newSubTaskDetails}
+                    onChange={(e) => setNewSubTaskDetails(e.target.value)}
+                    // disabled={!editMode}
+                  >
+                  </textarea>
+                </div>
+              </div>
+            </div>
+            {relatedSubTasks?.map((subtask) => {
+              return <SubTaskTemplate 
+                key={subtask.id}
+                subtask={subtask}
+                id={subtask.id}
+                task_id={id}
+                title={subtask.title}
+                details={subtask.details}
+                removeTemplateSubTask = {removeTemplateSubTask}            
+                // editTemplateSubTask = {editTemplateSubTask}
+              />
+            })}
+        </div>
+        )
+        }
+
+
+
+
     </div>
+
+
+
+
+
+
+
 
 
 
