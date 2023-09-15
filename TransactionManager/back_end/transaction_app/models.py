@@ -254,8 +254,7 @@ class Transaction(models.Model):
 @receiver(post_save, sender=Transaction)
 def copy_default_tasks(sender, instance, created, **kwargs):
     if created:
-        print("Transaction Created!")
-        default_tasks = Taskmenu.objects.all()
+        default_tasks = instance.user_id.menutasks.all()
 
         # First pass: Create all Task objects and populate the task_mapping
         task_mapping = {}
