@@ -53,8 +53,8 @@ export default function SubTaskTemplate (props) {
 
   return (
     <>
-    <div className="left_side_component">
-      <div className="property_container">
+    <div className="card mt-2 pl-1">
+      <div className="toast-header bg-secondary-subtle d-flex justify-content-between align-items-center">
         <div className="property_info_container">
           <div>
             <input 
@@ -65,11 +65,11 @@ export default function SubTaskTemplate (props) {
               onChange={(e) => setNewTitle(e.target.value)}
             />
           </div>
-          <div>
+          <div className="card-body bg-light text-emphasis-secondary p-2">
+            <span className="input-group-text">Details</span>
             <textarea 
-              className="task_details"
-              name="" 
-              id="" 
+              className="form-control"
+              aria-label="With textarea"
               cols="30" 
               rows="4"
               // placeholder="Notes"
@@ -84,20 +84,40 @@ export default function SubTaskTemplate (props) {
           <div className="viewing_button_container">
             {!editMode ? (
               <div id="edit_button_container">
-                <button onClick={toggleEditMode}>Edit Sub-Task</button>
+                <button 
+                  type="button" 
+                  className="btn btn-primary m-2 p-1"  
+                  aria-label="Edit"
+                  onClick={toggleEditMode}
+                >Edit Sub-Task</button>
               </div>
             ) : (
               <div id="editing_button_container">
                 <div id="edit_button_container">
-                  <button onClick={discardChanges}>Discard Changes</button>
+                  <button 
+                    type="button" 
+                    className="btn btn-outline-secondary bg-white m-1 p-1"  
+                    aria-label="Edit"
+                    onClick={discardChanges}
+                  >Discard Changes</button>
                 </div>
                 <div id="remove_button_container">
-                  <button onClick={saveChanges}>Save changes</button>
+                  <button 
+                    type="button" 
+                    className="btn btn-warning m-1 p-1"  
+                    aria-label="Edit"
+                    onClick={saveChanges}
+                  >Save changes</button>
                 </div>
               </div>
             )}
             <div id="remove_button_container">
-              <button onClick={() => removeTemplateSubTask(id)}>Remove Sub-Task</button>
+              <button 
+                type="button" 
+                className="btn btn-danger m-1 p-1"  
+                aria-label="Delete"
+                onClick={() => removeTemplateSubTask(id)}
+              >Remove Sub-Task</button>
             </div>
           </div>
         </div>
