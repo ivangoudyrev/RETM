@@ -72,7 +72,7 @@ export default function SubTask (props) {
 
   return (
     <>
-    <div className="card mt-2 pl-1">
+    <div className="card mt-2 pl-1 border-dark border-1">
       <div className="toast-header bg-secondary-subtle d-flex justify-content-between align-items-center">
         <div id="task-input" className="form-check form-check-inline m-3">
           <input 
