@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SubTaskTemplate from "../components/SubTaskTemplate";
 import { api } from "../utilities";
 
@@ -39,6 +39,10 @@ export default function TaskTemplate (props) {
   const toggleEditMode = () => {
     setEditMode(!editMode);
   }
+
+  useEffect(() => {
+    getTemplateSubTasks();
+  },[])
 
   const addTemplateSubTask = async() => {
     // console.log("POST:", newSubTaskTitle, newSubTaskDetails, id)
@@ -117,6 +121,7 @@ export default function TaskTemplate (props) {
             />
           )} 
         </div>
+
         <div>
           {!editMode ? (
             // Task Edit Button
