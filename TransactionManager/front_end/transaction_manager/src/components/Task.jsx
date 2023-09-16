@@ -6,7 +6,7 @@ import { userContext } from "../App";
 
 export default function Task(props) {
   const {
-    removeTask,
+    // removeTask,
     editTask
   } = useContext(userContext);
 
@@ -116,7 +116,11 @@ export default function Task(props) {
     // newTaskSaveDiscardHandle();
     // clearNewTaskFields();
     toggleNewTaskForm();
+  }
 
+  const removeTask = async(id) => {
+    let response = await api.delete(`transactions/${transactionId}/tasks/${id}/`)
+    setTasks(response.data);
   }
 
   const addSubTask = async() => {

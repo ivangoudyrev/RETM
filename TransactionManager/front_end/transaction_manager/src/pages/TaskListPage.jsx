@@ -94,10 +94,10 @@ export default function TaskListPage(){
     setTasks(response.data)
   }
 
-  const removeTask = async(id) => {
-    let response = await api.delete(`transactions/${transactionId}/tasks/${id}/`)
-    setTasks(response.data);
-  }
+  // const removeTask = async(id) => {
+  //   let response = await api.delete(`transactions/${transactionId}/tasks/${id}/`)
+  //   setTasks(response.data);
+  // }
 
   const editTask = async(id, updatedTask) => {
     let response = await api.put(`transactions/${transactionId}/tasks/${id}/`, updatedTask)
@@ -253,7 +253,7 @@ export default function TaskListPage(){
                       complete={task.complete}
                       essential={task.essential}
                       notes={task.notes}
-                      removeTask={removeTask}
+                      // removeTask={removeTask}
                       // addTask={addTask}
                       editTask={editTask}
                       transactionId={transactionId}
