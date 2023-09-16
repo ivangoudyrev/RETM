@@ -228,18 +228,8 @@ export default function TaskListPage(){
                   </div>
                 </div>
               </div>
-              )}
-
-              {/* )} */}
-
-
-              
-            
-              
-              
-
-
-
+              )}   
+        
               <div>
                 {
                   tasks?.map((task) => {
