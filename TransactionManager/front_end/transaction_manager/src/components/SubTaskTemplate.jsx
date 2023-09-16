@@ -53,7 +53,7 @@ export default function SubTaskTemplate (props) {
 
   return (
     <>
-    <div className="card mt-2 pl-1">
+    <div className="card mt-2 pl-1 border-dark border-1">
       <div className="toast-header bg-secondary-subtle d-flex justify-content-between align-items-center">
         <div className="form-check form-check-inline m-3">
           <input 
@@ -95,7 +95,7 @@ export default function SubTaskTemplate (props) {
             </>
           )}
         </div>
-        {/* <div className="card-body bg-light text-emphasis-secondary p-2">
+        <div className="card-body bg-light text-emphasis-secondary p-2">
           <span className="input-group-text">Details</span>
           <textarea 
             className="form-control"
@@ -108,7 +108,7 @@ export default function SubTaskTemplate (props) {
             onChange={(e) => setNewDetails(e.target.value)}
           >  
           </textarea>
-        </div>   */}
+        </div>  
       </div>
         {/* <div id="button_container">
           <div className="viewing_button_container">
