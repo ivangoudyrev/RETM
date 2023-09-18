@@ -446,56 +446,55 @@ export default function Task(props) {
                 >Save</button>
               </div>        
             </div>
-              <div className="card-body bg-light text-emphasis-secondary p-1">
-                
-                {/* New Subtask Due Date */}
-                <div id="inspection-emd-contingency-input" className="input-group g-3 my-2">
-                  <span className="input-group-text" id="basic-addon1">Due:</span>
-                  <input 
-                    // style={{ display: purchaseDetailsEditMode ? "" : "none" }}
-                    type="datetime-local" 
-                    className="form-control" 
-                    id="ratifydate"
-                    placeholder="Enter Due Date"
-                    // disabled={!editMode}
-                    value={newSubTaskDueDate}
-                    onChange={(e) => setNewSubTaskDueDate(e.target.value)} 
-                  />
-                </div>
+            <div className="card-body bg-light text-emphasis-secondary p-1">
+              
+              {/* New Subtask Due Date */}
+              <div id="inspection-emd-contingency-input" className="input-group g-3 my-2">
+                <span className="input-group-text" id="basic-addon1">Due:</span>
+                <input 
+                  // style={{ display: purchaseDetailsEditMode ? "" : "none" }}
+                  type="datetime-local" 
+                  className="form-control" 
+                  id="ratifydate"
+                  placeholder="Enter Due Date"
+                  // disabled={!editMode}
+                  value={newSubTaskDueDate}
+                  onChange={(e) => setNewSubTaskDueDate(e.target.value)} 
+                />
+              </div>
 
-                {/* New Subtask Details */}
-                <div className="input-group mb-2">
-                  <span className="input-group-text">Details</span>
-                  <textarea 
-                    className="form-control" 
-                    aria-label="With textarea"
-                    value={newSubTaskDetails}
-                    onChange={(e) => setNewSubTaskDetails(e.target.value)}
-                    // disabled={!editMode}
-                  >
-                  </textarea>
-                </div>
+              {/* New Subtask Details */}
+              <div className="input-group mb-2">
+                <span className="input-group-text">Details</span>
+                <textarea 
+                  className="form-control" 
+                  aria-label="With textarea"
+                  value={newSubTaskDetails}
+                  onChange={(e) => setNewSubTaskDetails(e.target.value)}
+                  // disabled={!editMode}
+                >
+                </textarea>
               </div>
             </div>
-            {relatedSubTasks?.map((subtask) => {
-              return <SubTask 
-                key={subtask.id}
-                subtask={subtask}
-                id={subtask.id}
-                task_id={id}
-                title={subtask.title}
-                details={subtask.details}
-                due_date={subtask.due_date}
-                complete={subtask.complete}
-                setRelatedSubTasks={setRelatedSubTasks}
-                transactionId={transactionId}
-                // removeSubTask = {removeSubTask}            
-                // editTemplateSubTask = {editTemplateSubTask}
-              />
-            })}
+          </div>
+          {relatedSubTasks?.map((subtask) => {
+            return <SubTask 
+              key={subtask.id}
+              subtask={subtask}
+              id={subtask.id}
+              task_id={id}
+              title={subtask.title}
+              details={subtask.details}
+              due_date={subtask.due_date}
+              complete={subtask.complete}
+              setRelatedSubTasks={setRelatedSubTasks}
+              transactionId={transactionId}
+              // removeSubTask = {removeSubTask}            
+              // editTemplateSubTask = {editTemplateSubTask}
+            />
+          })}
         </div>
-        )
-        }
+        )}
         
         
         </div>
