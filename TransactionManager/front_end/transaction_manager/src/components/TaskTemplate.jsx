@@ -296,7 +296,7 @@ export default function TaskTemplate (props) {
                   task_id={id}
                   title={subtask.title}
                   details={subtask.details}
-                  removeTemplateSubTask = {removeTemplateSubTask}            
+                  // removeTemplateSubTask = {removeTemplateSubTask}            
                   // editTemplateSubTask = {editTemplateSubTask}
                 />
               })}
