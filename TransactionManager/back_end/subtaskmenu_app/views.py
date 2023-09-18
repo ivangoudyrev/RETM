@@ -4,6 +4,7 @@ from .serializers import ASubtaskSerializer
 from .models import Subtaskmenu
 from rest_framework.response import Response
 from rest_framework.status import (
+  HTTP_200_OK,
   HTTP_201_CREATED,
   HTTP_204_NO_CONTENT,
   HTTP_400_BAD_REQUEST
@@ -20,17 +21,9 @@ class All_subtasks_in_task(User_permissions):
   
   # add menu subtask to a menu task
   def post(self, request, task_id):
-    print("Received task_id:", task_id)
     request.data["user_id"] = request.user
     new_subtask = Subtaskmenu(**request.data)
     new_subtask.save()
-    print(new_subtask)
-    # if task_id is not None:
-      # a_task = get_object_or_404(request.user.menutasks, id=task_id)
-      # request.data["task_id"] = a_task
-    # new_subtask = Subtaskmenu(**request.data)
-    # new_subtask.save()
-    # task_id = new_subtask.task_id_id
     a_task = get_object_or_404(request.user.menutasks, id=task_id)
     subtasks = a_task.subtasks.order_by("id")
     return Response(ASubtaskSerializer(subtasks, many=True).data, status=HTTP_201_CREATED)
@@ -59,8 +52,10 @@ class A_subtask_in_task(User_permissions):
       return Response("Something went wrong", HTTP_400_BAD_REQUEST)
 
   # delete a specific subtask
-  def delete(self, request, subtask_id):
+  def delete(self, request, task_id, subtask_id):
     # a_task = get_object_or_404(request.user.menutasks, id=task_id)
     a_subtask = get_object_or_404(request.user.menusubtasks,id=subtask_id)
     a_subtask.delete()
-    return Response(status=HTTP_204_NO_CONTENT)
+    a_task = get_object_or_404(request.user.menutasks, id=task_id)
+    subtasks = a_task.subtasks.order_by("id")
+    return Response(ASubtaskSerializer(subtasks, many=True).data, status=HTTP_200_OK)
