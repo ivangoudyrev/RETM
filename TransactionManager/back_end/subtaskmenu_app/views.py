@@ -23,7 +23,7 @@ class All_subtasks_in_task(User_permissions):
   
   # add menu subtask to a menu task
   def post(self, request):
-    print(request.data)
+    # print(request.data)
     request.data["user_id"] = request.user
     new_subtask = Subtaskmenu(**request.data)
     new_subtask.save()
@@ -32,7 +32,10 @@ class All_subtasks_in_task(User_permissions):
       # request.data["task_id"] = a_task
     # new_subtask = Subtaskmenu(**request.data)
     # new_subtask.save()
-    return Response(ASubtaskSerializer(new_subtask).data, status=HTTP_201_CREATED)
+    task_id = request.task_id_id
+    task = get_object_or_404(request.user.menutasks, id=task_id)
+    subtasks = task.subtasks
+    return Response(ASubtaskSerializer(subtasks, many=True).data, status=HTTP_201_CREATED)
 
 class A_subtask_in_task(User_permissions):
 

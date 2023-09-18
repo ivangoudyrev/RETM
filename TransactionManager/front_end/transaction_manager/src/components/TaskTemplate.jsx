@@ -67,7 +67,8 @@ export default function TaskTemplate (props) {
       "details" : newSubTaskDetails,
     });
     // console.log(response.data)
-    getTemplateSubTasks();
+    // getTemplateSubTasks();
+    setRelatedSubTasks(response.data)
     setNewSubTaskTitle("");
     setNewSubTaskDetails("");
     newSubTaskSaveDiscardHandle();
