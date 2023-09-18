@@ -4,8 +4,6 @@ import { useEffect, useState } from "react"
 import TaskTemplate from "../components/TaskTemplate";
 import Calendar from "../components/Calendar";
 import AllTasks from "../components/AllTasks";
-// import SubTaskTemplate from "../components/SubTaskTemplate";
-
 
 export default function TasksTemplatesBuyPage(){
   const [templateTasks, setTemplateTasks] = useState([]);
@@ -22,19 +20,12 @@ export default function TasksTemplatesBuyPage(){
 
   useEffect(()=>{
     getTemplateTasks();
-    // getTemplateSubTasks();
   },[])
 
   const getTemplateTasks = async() => {
     let response = await api.get("taskmenu/");
     setTemplateTasks(response.data)
-    // console.log("Tasks:", response.data);
   }
-
-  // const getTemplateSubTasks = async() => {
-  //   let response = await api.get("subtaskmenu/");
-  //   setTemplateSubTasks(response.data);
-  // }
 
   const addTemplateTask = async() => {
     await api.post("taskmenu/",{
@@ -47,27 +38,10 @@ export default function TasksTemplatesBuyPage(){
     newTaskSaveDiscardHandle();
   }
 
-  // const addTemplateSubTask = async() => {
-  //   console.log("POST:", newSubTaskTitle, newSubTaskDetails, newParentTask)
-  //   let response = await api.post("subtaskmenu/",{
-  //     "task_id_id": newParentTask,
-  //     "title" : newSubTaskTitle,
-  //     "details" : newSubTaskDetails,
-  //   });
-  //   console.log(response.data)
-  //   setNewParentTask("");
-  //   getTemplateSubTasks();
-  //   setNewSubTaskTitle("");
-  //   setNewSubTaskDetails("");
-    
+  // const removeTemplateTask = async(id) => {
+  //   await api.delete(`taskmenu/${id}/`)
+  //   getTemplateTasks();
   // }
-
-  const removeTemplateTask = async(id) => {
-    await api.delete(`taskmenu/${id}/`)
-    getTemplateTasks();
-  }
-
-  
 
   const editTemplateTask = async(id, updatedTemplateTask) => {
     // console.log(updatedTemplateTask)
@@ -178,11 +152,12 @@ export default function TasksTemplatesBuyPage(){
                   title={task.title}
                   details={task.details}
                   // templateSubTasks = {templateSubTasks}
-                  removeTemplateTask = {removeTemplateTask}            
+                  // removeTemplateTask = {removeTemplateTask}            
                   editTemplateTask = {editTemplateTask}
                   // removeTemplateSubTask = {removeTemplateSubTask}
                   editTemplateSubTask = {editTemplateSubTask}
                   // getTemplateSubTasks = {getTemplateSubTasks}
+                  setTemplateTasks = {setTemplateTasks}
                   />
                 })
               }
