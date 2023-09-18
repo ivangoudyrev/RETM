@@ -21,9 +21,7 @@ export default function SubTaskTemplate (props) {
   }
 
   const editTemplateSubTask = async(id, updatedTemplateSubTask) => {
-    // console.log(updatedTemplateSubTask)
     await api.put(`taskmenu/${task_id}/subtasks/${id}/`, updatedTemplateSubTask)
-    // getTemplateSubTasks();
   }
   
   const removeTemplateSubTask = async() => {
@@ -36,7 +34,6 @@ export default function SubTaskTemplate (props) {
   }
 
   const saveChanges = () => {
-    // console.log("in saveChanges", id, title)
     setEditMode(false);
     const updatedTemplateSubTask = {
       ...subtask,
@@ -114,49 +111,7 @@ export default function SubTaskTemplate (props) {
           </div>
         </div>  
       </div>
-        {/* <div id="button_container">
-          <div className="viewing_button_container">
-            {!editMode ? (
-              <div id="edit_button_container">
-                <button 
-                  type="button" 
-                  className="btn btn-primary m-2 p-1"  
-                  aria-label="Edit"
-                  onClick={toggleEditMode}
-                >Edit Sub-Task</button>
-              </div>
-            ) : (
-              <div id="editing_button_container">
-                <div id="edit_button_container">
-                  <button 
-                    type="button" 
-                    className="btn btn-outline-secondary bg-white m-1 p-1"  
-                    aria-label="Edit"
-                    onClick={discardChanges}
-                  >Discard Changes</button>
-                </div>
-                <div id="remove_button_container">
-                  <button 
-                    type="button" 
-                    className="btn btn-warning m-1 p-1"  
-                    aria-label="Edit"
-                    onClick={saveChanges}
-                  >Save changes</button>
-                </div>
-              </div>
-            )}
-            <div id="remove_button_container">
-              <button 
-                type="button" 
-                className="btn btn-danger m-1 p-1"  
-                aria-label="Delete"
-                onClick={() => removeTemplateSubTask(id)}
-              >Remove Sub-Task</button>
-            </div>
-          </div>
-        </div> */}
     </div>
-    {/* </div> */}
     </>
   )
 }

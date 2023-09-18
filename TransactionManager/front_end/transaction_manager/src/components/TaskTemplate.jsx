@@ -265,38 +265,37 @@ export default function TaskTemplate (props) {
                   >Save</button>
                 </div>        
               </div>
-                <div className="card-body bg-light text-emphasis-secondary p-1">
-                  
-                  
+              <div className="card-body bg-light text-emphasis-secondary p-1">
+                
+                
 
-                  {/* New Subtask Details */}
-                  <div className="input-group mb-2">
-                    <span className="input-group-text">Details</span>
-                    <textarea 
-                      className="form-control" 
-                      aria-label="With textarea"
-                      value={newSubTaskDetails}
-                      onChange={(e) => setNewSubTaskDetails(e.target.value)}
-                      // disabled={!editMode}
-                    >
-                    </textarea>
-                  </div>
+                {/* New Subtask Details */}
+                <div className="input-group mb-2">
+                  <span className="input-group-text">Details</span>
+                  <textarea 
+                    className="form-control" 
+                    aria-label="With textarea"
+                    value={newSubTaskDetails}
+                    onChange={(e) => setNewSubTaskDetails(e.target.value)}
+                    // disabled={!editMode}
+                  >
+                  </textarea>
                 </div>
               </div>
-              {relatedSubTasks?.map((subtask) => {
-                return <SubTaskTemplate 
-                  key={subtask.id}
-                  subtask={subtask}
-                  id={subtask.id}
-                  task_id={id}
-                  title={subtask.title}
-                  details={subtask.details}
-                  setRelatedSubTasks={setRelatedSubTasks}
-                />
-              })}
+            </div>
+            {relatedSubTasks?.map((subtask) => {
+              return <SubTaskTemplate 
+                key={subtask.id}
+                subtask={subtask}
+                id={subtask.id}
+                task_id={id}
+                title={subtask.title}
+                details={subtask.details}
+                setRelatedSubTasks={setRelatedSubTasks}
+              />
+            })}
           </div>
-          )
-          }
+        )}
       </div>
     </div>
     </>
