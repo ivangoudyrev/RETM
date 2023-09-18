@@ -14,29 +14,25 @@ class All_subtasks_in_task(User_permissions):
 
   # get all subtasks for a specific template task
   def get(self, request, task_id):
-    # all_subtasks_ordered = request.user.menusubtasks.order_by('id')
-    # all_subtasks = ASubtaskSerializer(all_subtasks_ordered, many=True)
-    print("received! task ID:", task_id)
     a_task = get_object_or_404(request.user.menutasks, id=task_id)
-    print(a_task)
     subtasks = a_task.subtasks.order_by("id")
-    print(subtasks)
     return Response(ASubtaskSerializer(subtasks, many=True).data)
-    # return Response(all_subtasks.data)
   
   # add menu subtask to a menu task
   def post(self, request, task_id):
+    print("Received task_id:", task_id)
     request.data["user_id"] = request.user
     new_subtask = Subtaskmenu(**request.data)
     new_subtask.save()
+    print(new_subtask)
     # if task_id is not None:
       # a_task = get_object_or_404(request.user.menutasks, id=task_id)
       # request.data["task_id"] = a_task
     # new_subtask = Subtaskmenu(**request.data)
     # new_subtask.save()
-    task_id = new_subtask.task_id_id
-    task = get_object_or_404(request.user.menutasks, id=task_id)
-    subtasks = task.subtasks
+    # task_id = new_subtask.task_id_id
+    a_task = get_object_or_404(request.user.menutasks, id=task_id)
+    subtasks = a_task.subtasks.order_by("id")
     return Response(ASubtaskSerializer(subtasks, many=True).data, status=HTTP_201_CREATED)
 
 class A_subtask_in_task(User_permissions):
