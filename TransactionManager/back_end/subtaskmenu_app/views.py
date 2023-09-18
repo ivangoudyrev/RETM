@@ -13,16 +13,16 @@ from rest_framework.status import (
 class All_subtasks_in_task(User_permissions):
 
   # get all tasks in a task menu for a specific user
-  def get(self, request):
-    all_subtasks_ordered = request.user.menusubtasks.order_by('id')
-    all_subtasks = ASubtaskSerializer(all_subtasks_ordered, many=True)
-    # a_task = get_object_or_404(request.user.menutasks, id=task_id)
-    # subtasks = a_task.subtasks.order_by("id")
-    # return Response(ASubtaskSerializer(subtasks, many=True).data)
-    return Response(all_subtasks.data)
+  def get(self, request, task_id):
+    # all_subtasks_ordered = request.user.menusubtasks.order_by('id')
+    # all_subtasks = ASubtaskSerializer(all_subtasks_ordered, many=True)
+    a_task = get_object_or_404(request.user.menutasks, id=task_id)
+    subtasks = a_task.subtasks.order_by("id")
+    return Response(ASubtaskSerializer(subtasks, many=True).data)
+    # return Response(all_subtasks.data)
   
   # add menu subtask to a menu task
-  def post(self, request):
+  def post(self, request, task_id):
     request.data["user_id"] = request.user
     new_subtask = Subtaskmenu(**request.data)
     new_subtask.save()
