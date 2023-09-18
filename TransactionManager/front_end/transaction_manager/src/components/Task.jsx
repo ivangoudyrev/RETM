@@ -15,10 +15,8 @@ export default function Task(props) {
     id,
     title,
     details,
-    
     // removeTask,
     // editTask,
-    
     
     due_date,
     complete,

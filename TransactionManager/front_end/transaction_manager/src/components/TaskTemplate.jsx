@@ -13,7 +13,7 @@ export default function TaskTemplate (props) {
     removeTemplateTask,
     editTemplateTask,
 
-    getTemplateSubTasks,
+    // getTemplateSubTasks,
     removeTemplateSubTask,
 
   } = props;
@@ -33,22 +33,31 @@ export default function TaskTemplate (props) {
 
   const [showSubtasks, setShowSubtasks] = useState(false);
 
-  const relatedSubTasks = templateSubTasks.filter(subTask => subTask.task_id === id)
+  const [relatedSubTasks, setRelatedSubTasks] = useState([])
 
+  // const relatedSubTasks = templateSubTasks.filter(subTask => subTask.task_id === id)
 
   const toggleEditMode = () => {
     setEditMode(!editMode);
   }
 
   useEffect(() => {
+    const getTemplateSubTasks = async() => {
+      let response = await api.get("subtaskmenu/");
+      subtasks = response.data.filter(subTask => subTask.task_id === id);
+      setRelatedSubTasks(subtasks);
+      if (subtasks.length > 0) {setShowSubtasks(true)};
+    };
     getTemplateSubTasks();
   },[])
 
-  useEffect(() => {
-    if (!relatedSubTasks.length>0) {
-      setShowSubtasks(false);
-    }
-  },[relatedSubTasks])
+  
+
+  // useEffect(() => {
+  //   if (!relatedSubTasks.length>0) {
+  //     setShowSubtasks(false);
+  //   }
+  // },[relatedSubTasks])
 
   const addTemplateSubTask = async() => {
     // console.log("POST:", newSubTaskTitle, newSubTaskDetails, id)
