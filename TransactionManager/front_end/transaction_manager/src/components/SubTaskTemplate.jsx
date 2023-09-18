@@ -9,7 +9,7 @@ export default function SubTaskTemplate (props) {
     id,
     title,
     details,
-    setRelatedSubtasks,
+    setRelatedSubTasks,
   } = props;
 
   const [newTitle, setNewTitle] = useState(title)
@@ -29,7 +29,7 @@ export default function SubTaskTemplate (props) {
   const removeTemplateSubTask = async() => {
     try {
       await api.delete(`taskmenu/${task_id}/subtasks/${id}/`);
-      setRelatedSubtasks(prevTasks => prevTasks.filter(task => task.id !== id));
+      setRelatedSubTasks(prevTasks => prevTasks.filter(task => task.id !== id));
     } catch (error) {
       console.error("Error deleting subtask:", error);
     }
