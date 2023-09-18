@@ -8,17 +8,11 @@ export default function TaskTemplate (props) {
     id,
     title,
     details,
-    templateSubTasks,
-
     removeTemplateTask,
     editTemplateTask,
-
-    // getTemplateSubTasks,
-    removeTemplateSubTask,
-
   } = props;
 
-  const [newId, setNewId] = useState(id)
+  // const [newId, setNewId] = useState(id)
   const [newTitle, setNewTitle] = useState(title)
   const [newDetails, setNewDetails] = useState(details)
   const [editMode, setEditMode] = useState(false)
@@ -40,20 +34,20 @@ export default function TaskTemplate (props) {
   }
 
   useEffect(() => {
-    const getTemplateSubTasks = async(task_id) => {
-      let response = await api.get(`taskmenu/${task_id}/subtasks/`);
+    const getTemplateSubTasks = async() => {
+      let response = await api.get(`taskmenu/${id}/subtasks/`);
       if (response.data.length > 0) {
         setShowSubtasks(true);
         setRelatedSubTasks(response.data);
       };
     };
-    getTemplateSubTasks(newId);
+    getTemplateSubTasks();
   },[])
 
 
-  const addTemplateSubTask = async(task_id) => {
+  const addTemplateSubTask = async() => {
     // console.log("POST:", newSubTaskTitle, newSubTaskDetails, id)
-    let response = await api.post(`taskmenu/${task_id}/subtasks/`,{
+    let response = await api.post(`taskmenu/${id}/subtasks/`,{
       "task_id_id": id,
       "title" : newSubTaskTitle,
       "details" : newSubTaskDetails,
@@ -271,7 +265,7 @@ export default function TaskTemplate (props) {
                     type="button" 
                     className="btn btn-warning m-1 p-1"  
                     aria-label="Edit"
-                    onClick={addTemplateSubTask(newId)}
+                    onClick={addTemplateSubTask}
                     // style={{ display: toggleEditMode ? "" : "none" }}
                   >Save</button>
                 </div>        

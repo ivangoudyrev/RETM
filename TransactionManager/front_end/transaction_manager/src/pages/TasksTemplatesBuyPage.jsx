@@ -22,7 +22,7 @@ export default function TasksTemplatesBuyPage(){
 
   useEffect(()=>{
     getTemplateTasks();
-    getTemplateSubTasks();
+    // getTemplateSubTasks();
   },[])
 
   const getTemplateTasks = async() => {
@@ -31,11 +31,10 @@ export default function TasksTemplatesBuyPage(){
     // console.log("Tasks:", response.data);
   }
 
-  const getTemplateSubTasks = async() => {
-    let response = await api.get("subtaskmenu/");
-    setTemplateSubTasks(response.data);
-    // console.log("Subtasks:", response.data)
-  }
+  // const getTemplateSubTasks = async() => {
+  //   let response = await api.get("subtaskmenu/");
+  //   setTemplateSubTasks(response.data);
+  // }
 
   const addTemplateTask = async() => {
     await api.post("taskmenu/",{
@@ -70,7 +69,7 @@ export default function TasksTemplatesBuyPage(){
 
   const removeTemplateSubTask = async(id) => {
     await api.delete(`subtaskmenu/${id}/`)
-    getTemplateSubTasks();
+    // getTemplateSubTasks();
   }
 
   const editTemplateTask = async(id, updatedTemplateTask) => {
@@ -82,7 +81,7 @@ export default function TasksTemplatesBuyPage(){
   const editTemplateSubTask = async(id, updatedTemplateSubTask) => {
     // console.log(updatedTemplateSubTask)
     await api.put(`subtaskmenu/${id}/`, updatedTemplateSubTask)
-    getTemplateSubTasks();
+    // getTemplateSubTasks();
   }
 
   const newTaskHandle = () => {
