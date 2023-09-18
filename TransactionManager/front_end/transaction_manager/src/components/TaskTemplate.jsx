@@ -42,7 +42,7 @@ export default function TaskTemplate (props) {
   }
 
   useEffect(() => {
-    const getTemplateSubTasks = async() => {
+    const getTemplateSubTasks = async(task_id) => {
       let response = await api.get(`taskmenu/${task_id}/subtasks/`);
       console.log(response.data);
       if (response.data.length > 0) {
@@ -50,7 +50,7 @@ export default function TaskTemplate (props) {
         setRelatedSubTasks(response.data);
       };
     };
-    getTemplateSubTasks();
+    getTemplateSubTasks(newId);
   },[])
 
   
