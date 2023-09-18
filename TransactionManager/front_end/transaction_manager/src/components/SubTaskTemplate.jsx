@@ -29,7 +29,8 @@ export default function SubTaskTemplate (props) {
   }
   
   const removeTemplateSubTask = async() => {
-    let response = await api.delete(`taskmenu/${task_id}subtaskmenu/${id}/`)
+    let response = await api.delete(`taskmenu/${task_id}/subtasks/${id}/`)
+    console.log(response.data)
     setRelatedSubtasks(response.data);
   }
 
