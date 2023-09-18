@@ -46,17 +46,12 @@ export default function TaskTemplate (props) {
 
 
   const addTemplateSubTask = async() => {
-    // console.log("POST:", newSubTaskTitle, newSubTaskDetails, id)
     let response = await api.post(`taskmenu/${id}/subtasks/`,{
       "task_id_id": id,
       "title" : newSubTaskTitle,
       "details" : newSubTaskDetails,
     });
-    // console.log(response.data)
-    // getTemplateSubTasks();
     setRelatedSubTasks(response.data)
-    // setNewSubTaskTitle("");
-    // setNewSubTaskDetails("");
     newSubTaskSaveDiscardHandle();
   }
 
