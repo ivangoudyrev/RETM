@@ -8,8 +8,6 @@ export default function Task(props) {
   const {
     // removeTask,
     editTask,
-    showAdditionalInfo,
-    street
   } = useContext(userContext);
 
   const {
@@ -28,6 +26,8 @@ export default function Task(props) {
     transactionId,
 
     setTasks,
+    showAdditionalInfo,
+    street
   } = props;
   
   // const [newId, setNewId] = useState(id)
