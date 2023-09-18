@@ -3,22 +3,17 @@ import { api } from "../utilities";
 
 export default function SubTaskTemplate (props) {
 
-  // const {
-  //   subtask,
-
-  // } = props;
-
   const {
     task_id,
     subtask,
     id,
     title,
     details,
+    setRelatedSubtasks,
     // removeTemplateSubTask,
     // editTemplateSubTask,
   } = props;
 
-  const [newId, setNewId] = useState(id)
   const [newTitle, setNewTitle] = useState(title)
   const [newDetails, setNewDetails] = useState(details)
   const [editMode, setEditMode] = useState(false)
@@ -33,9 +28,9 @@ export default function SubTaskTemplate (props) {
     // getTemplateSubTasks();
   }
   
-  const removeTemplateSubTask = async(id) => {
-    await api.delete(`taskmenu/${task_id}subtaskmenu/${id}/`)
-    // getTemplateSubTasks();
+  const removeTemplateSubTask = async() => {
+    let response = await api.delete(`taskmenu/${task_id}subtaskmenu/${id}/`)
+    setRelatedSubtasks(response.data);
   }
 
   const saveChanges = () => {
