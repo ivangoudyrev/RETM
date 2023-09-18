@@ -44,9 +44,12 @@ export default function TaskTemplate (props) {
   useEffect(() => {
     const getTemplateSubTasks = async() => {
       let response = await api.get("subtaskmenu/");
-      subtasks = response.data.filter(subTask => subTask.task_id === id);
-      setRelatedSubTasks(subtasks);
-      if (subtasks.length > 0) {setShowSubtasks(true)};
+      console.log(response.data)
+      if (response.data.subtasks.length > 0) {
+        setShowSubtasks(true)
+        subtasks = response.data.filter(subTask => subTask.task_id === id);
+        setRelatedSubTasks(subtasks);
+      };
     };
     getTemplateSubTasks();
   },[])

@@ -181,12 +181,12 @@ export default function TasksTemplatesBuyPage(){
                   id={task.id}
                   title={task.title}
                   details={task.details}
-                  templateSubTasks = {templateSubTasks}
+                  // templateSubTasks = {templateSubTasks}
                   removeTemplateTask = {removeTemplateTask}            
                   editTemplateTask = {editTemplateTask}
-                  removeTemplateSubTask = {removeTemplateSubTask}
+                  // removeTemplateSubTask = {removeTemplateSubTask}
                   editTemplateSubTask = {editTemplateSubTask}
-                  getTemplateSubTasks = {getTemplateSubTasks}
+                  // getTemplateSubTasks = {getTemplateSubTasks}
                   />
                 })
               }
