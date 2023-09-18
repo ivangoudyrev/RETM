@@ -3,11 +3,6 @@ import { api } from "../utilities";
 
 export default function SubTask (props) {
 
-  // const {
-  //   subtask,
-
-  // } = props;
-
   const {
     subtask,
     id,
@@ -18,15 +13,10 @@ export default function SubTask (props) {
     complete,
     setRelatedSubTasks,
     transactionId,
-    
-    // removeTemplateSubTask,
-    // editTemplateSubTask,
   } = props;
 
-  // const [newId, setNewId] = useState(id)
   const [editTitle, setEditTitle] = useState(title);
   const [editDetails, setEditDetails] = useState(details);
-  // const [editNotes, setEditNotes] useState()
   const [editComplete, setEditComplete] = useState(complete);
   const [editDueDate, setEditDueDate] = useState(due_date);
   
