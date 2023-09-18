@@ -35,8 +35,6 @@ export default function TaskTemplate (props) {
 
   const [relatedSubTasks, setRelatedSubTasks] = useState([])
 
-  // const relatedSubTasks = templateSubTasks.filter(subTask => subTask.task_id === id)
-
   const toggleEditMode = () => {
     setEditMode(!editMode);
   }
@@ -44,7 +42,6 @@ export default function TaskTemplate (props) {
   useEffect(() => {
     const getTemplateSubTasks = async(task_id) => {
       let response = await api.get(`taskmenu/${task_id}/subtasks/`);
-      console.log(response.data);
       if (response.data.length > 0) {
         setShowSubtasks(true);
         setRelatedSubTasks(response.data);
@@ -53,17 +50,10 @@ export default function TaskTemplate (props) {
     getTemplateSubTasks(newId);
   },[])
 
-  
 
-  // useEffect(() => {
-  //   if (!relatedSubTasks.length>0) {
-  //     setShowSubtasks(false);
-  //   }
-  // },[relatedSubTasks])
-
-  const addTemplateSubTask = async() => {
+  const addTemplateSubTask = async(task_id) => {
     // console.log("POST:", newSubTaskTitle, newSubTaskDetails, id)
-    let response = await api.post("subtaskmenu/",{
+    let response = await api.post(`taskmenu/${task_id}/subtasks/`,{
       "task_id_id": id,
       "title" : newSubTaskTitle,
       "details" : newSubTaskDetails,
@@ -71,8 +61,8 @@ export default function TaskTemplate (props) {
     // console.log(response.data)
     // getTemplateSubTasks();
     setRelatedSubTasks(response.data)
-    setNewSubTaskTitle("");
-    setNewSubTaskDetails("");
+    // setNewSubTaskTitle("");
+    // setNewSubTaskDetails("");
     newSubTaskSaveDiscardHandle();
   }
 
@@ -281,7 +271,7 @@ export default function TaskTemplate (props) {
                     type="button" 
                     className="btn btn-warning m-1 p-1"  
                     aria-label="Edit"
-                    onClick={addTemplateSubTask}
+                    onClick={addTemplateSubTask(newId)}
                     // style={{ display: toggleEditMode ? "" : "none" }}
                   >Save</button>
                 </div>        
