@@ -12,12 +12,15 @@ from rest_framework.status import (
 # Create your views here.
 class All_subtasks_in_task(User_permissions):
 
-  # get all tasks in a task menu for a specific user
+  # get all subtasks for a specific template task
   def get(self, request, task_id):
     # all_subtasks_ordered = request.user.menusubtasks.order_by('id')
     # all_subtasks = ASubtaskSerializer(all_subtasks_ordered, many=True)
+    print("received! task ID:", task_id)
     a_task = get_object_or_404(request.user.menutasks, id=task_id)
+    print(a_task)
     subtasks = a_task.subtasks.order_by("id")
+    print(subtasks)
     return Response(ASubtaskSerializer(subtasks, many=True).data)
     # return Response(all_subtasks.data)
   
