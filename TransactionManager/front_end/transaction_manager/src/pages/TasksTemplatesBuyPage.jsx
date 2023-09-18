@@ -180,7 +180,7 @@ export default function TasksTemplatesBuyPage(){
                   // templateSubTasks = {templateSubTasks}
                   removeTemplateTask = {removeTemplateTask}            
                   editTemplateTask = {editTemplateTask}
-                  removeTemplateSubTask = {removeTemplateSubTask}
+                  // removeTemplateSubTask = {removeTemplateSubTask}
                   editTemplateSubTask = {editTemplateSubTask}
                   // getTemplateSubTasks = {getTemplateSubTasks}
                   />
