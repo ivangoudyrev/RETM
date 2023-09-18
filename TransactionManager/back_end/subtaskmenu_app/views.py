@@ -57,8 +57,4 @@ class A_subtask_in_task(User_permissions):
     a_subtask = get_object_or_404(request.user.menusubtasks,id=subtask_id)
     a_subtask.delete()
     a_task = get_object_or_404(request.user.menutasks, id=task_id)
-    try:
-      subtasks = a_task.subtasks.order_by("id")
-      return Response(ASubtaskSerializer(subtasks, many=True).data, HTTP_200_OK)
-    except:
-      return Response(HTTP_204_NO_CONTENT)
+    return Response(HTTP_204_NO_CONTENT)

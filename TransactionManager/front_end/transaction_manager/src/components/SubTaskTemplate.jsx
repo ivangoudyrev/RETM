@@ -27,9 +27,12 @@ export default function SubTaskTemplate (props) {
   }
   
   const removeTemplateSubTask = async() => {
-    let response = await api.delete(`taskmenu/${task_id}/subtasks/${id}/`)
-    console.log(response.data)
-    setRelatedSubtasks(response.data);
+    try {
+      await api.delete(`taskmenu/${task_id}/subtasks/${id}/`);
+      setRelatedSubtasks(prevTasks => prevTasks.filter(task => task.id !== id));
+    } catch (error) {
+      console.error("Error deleting subtask:", error);
+    }
   }
 
   const saveChanges = () => {
