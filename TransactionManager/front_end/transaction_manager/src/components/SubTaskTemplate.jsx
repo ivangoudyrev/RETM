@@ -9,11 +9,12 @@ export default function SubTaskTemplate (props) {
   // } = props;
 
   const {
+    task_id,
     subtask,
     id,
     title,
     details,
-    removeTemplateSubTask,
+    // removeTemplateSubTask,
     // editTemplateSubTask,
   } = props;
 
@@ -28,10 +29,15 @@ export default function SubTaskTemplate (props) {
 
   const editTemplateSubTask = async(id, updatedTemplateSubTask) => {
     // console.log(updatedTemplateSubTask)
-    await api.put(`subtaskmenu/${id}/`, updatedTemplateSubTask)
-    getTemplateSubTasks();
+    await api.put(`taskmenu/${task_id}/subtasks/${id}`, updatedTemplateSubTask)
+    // getTemplateSubTasks();
   }
   
+  const removeTemplateSubTask = async(id) => {
+    await api.delete(`taskmenu/${task_id}subtaskmenu/${id}/`)
+    // getTemplateSubTasks();
+  }
+
   const saveChanges = () => {
     // console.log("in saveChanges", id, title)
     setEditMode(false);
@@ -42,7 +48,6 @@ export default function SubTaskTemplate (props) {
     }
     editTemplateSubTask(id, updatedTemplateSubTask);
   }
-
 
 
   const discardChanges = () => {

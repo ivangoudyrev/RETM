@@ -67,10 +67,7 @@ export default function TasksTemplatesBuyPage(){
     getTemplateTasks();
   }
 
-  const removeTemplateSubTask = async(id) => {
-    await api.delete(`subtaskmenu/${id}/`)
-    // getTemplateSubTasks();
-  }
+  
 
   const editTemplateTask = async(id, updatedTemplateTask) => {
     // console.log(updatedTemplateTask)
