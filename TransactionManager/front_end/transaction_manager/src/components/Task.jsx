@@ -262,7 +262,7 @@ export default function Task(props) {
           {!editMode ? (
             // Task Title Published Box
             <div>
-              {showAdditionalInfo && <span className="h6 m-0">{street}</span>}
+              {showAdditionalInfo && <span className="h6 m-0">{street}: </span>}
               <span className="h6 m-0">{task?.title}</span>
             </div>
 
