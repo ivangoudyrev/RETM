@@ -94,23 +94,23 @@ export default function SubTaskTemplate (props) {
             </>
           )}
         </div>
-        <div className="card-body bg-light text-emphasis-secondary p-2">
-          <div div id="inspection-emd-contingency-input" className="input-group g-3 ml-2 mb-2">
-            <span className="input-group-text">Details</span>
-            <textarea 
-              className="form-control"
-              aria-label="With textarea"
-              cols="30" 
-              rows="4"
-              // placeholder="Notes"
-              value={newDetails}
-              disabled={!editMode}
-              onChange={(e) => setNewDetails(e.target.value)}
-            >  
-            </textarea>
-          </div>
-        </div>  
       </div>
+      <div className="card-body bg-light text-emphasis-secondary p-2">
+        <div div id="inspection-emd-contingency-input" className="input-group g-3 ml-2 mb-2">
+          <span className="input-group-text">Details</span>
+          <textarea 
+            className="form-control"
+            aria-label="With textarea"
+            cols="30" 
+            rows="4"
+            // placeholder="Notes"
+            value={newDetails}
+            disabled={!editMode}
+            onChange={(e) => setNewDetails(e.target.value)}
+          >  
+          </textarea>
+        </div>
+      </div>  
     </div>
     </>
   )
