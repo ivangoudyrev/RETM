@@ -8,7 +8,7 @@ export default function TaskTemplate (props) {
     id,
     title,
     details,
-    removeTemplateTask,
+    // removeTemplateTask,
     editTemplateTask,
   } = props;
 
