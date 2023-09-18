@@ -10,8 +10,6 @@ export default function SubTaskTemplate (props) {
     title,
     details,
     setRelatedSubtasks,
-    // removeTemplateSubTask,
-    // editTemplateSubTask,
   } = props;
 
   const [newTitle, setNewTitle] = useState(title)
@@ -24,7 +22,7 @@ export default function SubTaskTemplate (props) {
 
   const editTemplateSubTask = async(id, updatedTemplateSubTask) => {
     // console.log(updatedTemplateSubTask)
-    await api.put(`taskmenu/${task_id}/subtasks/${id}`, updatedTemplateSubTask)
+    await api.put(`taskmenu/${task_id}/subtasks/${id}/`, updatedTemplateSubTask)
     // getTemplateSubTasks();
   }
   
