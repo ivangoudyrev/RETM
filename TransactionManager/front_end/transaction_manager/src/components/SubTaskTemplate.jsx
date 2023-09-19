@@ -54,12 +54,12 @@ export default function SubTaskTemplate (props) {
     <>
     <div className="card mt-2 pl-1 border-dark border-1">
       <div className="toast-header bg-secondary-subtle d-flex justify-content-between align-items-center">
-        <div id="task-input" className="form-check form-check-inline m-3">
+        <div className="form-check form-check-inline m-3">
           <input 
-            className="task_title"
+            type="text" 
+            className="form-control"
             value={newTitle}
             disabled={!editMode}
-            type="text" 
             onChange={(e) => setNewTitle(e.target.value)}
           />
         </div>

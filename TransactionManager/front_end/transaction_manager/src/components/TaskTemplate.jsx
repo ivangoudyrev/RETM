@@ -10,6 +10,7 @@ export default function TaskTemplate (props) {
     details,
     // removeTemplateTask,
     editTemplateTask,
+    setTemplateTasks
   } = props;
 
   // const [newId, setNewId] = useState(id)
@@ -53,6 +54,15 @@ export default function TaskTemplate (props) {
     });
     setRelatedSubTasks(response.data)
     newSubTaskSaveDiscardHandle();
+  }
+
+  const removeTemplateTask = async() => {
+    try {
+      await api.delete(`taskmenu/${id}/`);
+      setTemplateTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+    } catch (error) {
+      console.error("Error deleting task:", error)
+    }
   }
 
   const saveChanges = () => {
@@ -166,7 +176,7 @@ export default function TaskTemplate (props) {
               type="button" 
               className="btn btn-danger m-1 p-1"  
               aria-label="Delete"
-              onClick={() => removeTemplateTask(id)}
+              onClick={() => removeTemplateTask()}
               style={{
                 display: toggleEditMode ? "" : "none",
                 '--bs-btn-padding-y': '.25rem',
