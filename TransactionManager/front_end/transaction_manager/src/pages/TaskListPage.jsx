@@ -248,6 +248,8 @@ export default function TaskListPage(){
                       editTask={editTask}
                       transactionId={transactionId}
                       setTasks={setTasks}
+                      showAdditionalInfo={false}
+                      street={property.street}
                     />
                   })
                 }

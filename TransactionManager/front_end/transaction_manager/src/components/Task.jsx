@@ -7,7 +7,9 @@ import { userContext } from "../App";
 export default function Task(props) {
   const {
     // removeTask,
-    editTask
+    editTask,
+    showAdditionalInfo,
+    street
   } = useContext(userContext);
 
   const {
@@ -259,7 +261,11 @@ export default function Task(props) {
           />
           {!editMode ? (
             // Task Title Published Box
-            <p className="h6 m-0">{task?.title}</p>
+            <div>
+              {showAdditionalInfo && <span className="h6 m-0">{street}</span>}
+              <span className="h6 m-0">{task?.title}</span>
+            </div>
+
           ) : (
             // Task Title Input Box
             <input 

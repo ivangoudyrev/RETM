@@ -55,11 +55,9 @@ export default function TasksMasterPage() {
                   complete={task.complete}
                   essential={task.essential}
                   notes={task.notes}
-                  //removeTask={removeTask}
-                  // addTask={addTask}
-                  // editTask={editTask}
-                  // transactionId={transactionId}
                   setTasks={setTasks}
+                  showAdditionalInfo = {true}
+                  street = {property.street}
                 />
               })
             }
